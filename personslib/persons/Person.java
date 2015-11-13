@@ -11,7 +11,7 @@ public class Person {
     protected String name;
 
     /** The person's first name. */
-    protected String firstName;
+    protected String firstName; 
 
     /** The person's email address. */
     protected String email;

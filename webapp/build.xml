@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <project name="echangeServices" default="dist">
 
-<property name="autodeploydir" value="../mydomain/autodeploy" />
+<property name="autodeploydir" value="../../mydomain/autodeploy" />
 
 <path id="jee">
   <fileset dir="/usr/local/glassfish-4.1/glassfish/modules/">

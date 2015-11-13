@@ -1,17 +1,19 @@
-package echangeServices;
+package webapp;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ConnexionServlet extends HttpServlet {
+import persons.*;
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+class SignInServlet extends HttpServlet {
+
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
         this.log("Une exécution de la servlet...");
         resp.setContentType("text/html;charset=UTF-8");
@@ -22,11 +24,17 @@ public class ConnexionServlet extends HttpServlet {
             out.close();
             throw e;
         }
-
-        String nom = req.getParameter("nom");
-        //out.println("<p>bonjour "+nom+"</p>");
-        req.setAttribute("nom", nom);
-        req.getRequestDispatcher("/pages/connexion.jsp").forward(req, resp);
         
-    }
+        // Main operation
+        String nom = req.getParameter("nom");
+        String prenom = req.getParameter("prenom");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        
+        Person p = new Person(nom, prenom, email);
+        
+        //personsDBStub.create(p, password);
+        /*String nom = req.getParameter("nom");
+        out.println("<p>bonjour "+nom+"</p>");*/
+  	}
 }

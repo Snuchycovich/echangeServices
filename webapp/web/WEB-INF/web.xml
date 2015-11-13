@@ -10,7 +10,7 @@
 
   <servlet>
     <servlet-name>EchangeServices</servlet-name>
-    <servlet-class>echangeServices.EchangeServicesServlet</servlet-class>
+    <servlet-class>webapp.EchangeServicesServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EchangeServices</servlet-name>
@@ -23,16 +23,25 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Inscription</servlet-name>
-    <url-pattern>/inscription</url-pattern>
+    <url-pattern>/signIn</url-pattern>
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>Connexion</servlet-name>
-    <servlet-class>echangeServices.ConnexionServlet</servlet-class>
+    <servlet-name>LogIn</servlet-name>
+    <jsp-file>/pages/logIn.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Connexion</servlet-name>
-    <url-pattern>/connexion</url-pattern>
+    <servlet-name>LogIn</servlet-name>
+    <url-pattern>/logIn</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Authentication</servlet-name>
+    <servlet-class>webapp.AuthenticationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Authentication</servlet-name>
+    <url-pattern>/auth</url-pattern>
   </servlet-mapping>
 
 </web-app> 

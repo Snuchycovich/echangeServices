@@ -8,7 +8,7 @@
 </target>
 
 <target name="dist" depends="init,compile">
-  <jar basedir="build" excludes="tests/**" destfile="dist/services.jar" />
+  <jar basedir="build" excludes="test/**" destfile="dist/services.jar" />
 </target>
 
 <target name="doc" depends="init,compile">
@@ -17,12 +17,12 @@
 
 <target name="compiletests" depends="compile">
   <javac srcdir="." destdir="build" classpath="build" includeantruntime="false">
-    <include name="tests/**/*.java" />
+    <include name="test/**/*.java" />
   </javac>
 </target>
 
 <target name="test" depends="compiletests">
-  <java fork="yes" classname="tests.TestServiceDBStub" classpath="build">
+  <java fork="yes" classname="test.TestServiceDBStub" classpath="build">
     <jvmarg value="-ea" />
   </java>
 </target>
