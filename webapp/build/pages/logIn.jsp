@@ -2,16 +2,16 @@
   
     <h1>Connexion</h1>
     <p> ${nom} </p>
-    <form action="auth" method="post">
-        <div>
+    <form action="auth" method="post" rol="form">
+        <div class="form-group">
             <label for="">Email:</label>
-            <input type="text" name="email">
+            <input type="text" name="email" class="form-control">
         </div>
-        <div>
+        <div class="form-group">
             <label for="">Password:</label>
-            <input type="text" name="password">
+            <input type="text" name="password" class="form-control">
         </div>
-        <button type="submit">Se connecter</button>   
+        <button type="submit" class="btn btn-default">Se connecter</button>   
     </form>    
   </div><!-- End #wrapper-->
 <jsp:include page="/fragments/footer.html" />
