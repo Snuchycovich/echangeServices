@@ -1,6 +1,6 @@
 package services;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * 
@@ -26,13 +26,13 @@ public class Service {
 	protected String category;
 	
 	/** The Service's category */ 
-	protected int idPerson;
+	//protected int idPerson;
 	
 	/** The Service's limit date*/
-	protected String limitDate;
+	//protected GregorianCalendar limitDate;
 	
 	/** The Service's creation date*/
-	protected Date creationDate;
+	//protected GregorianCalendar creationDate;
 	
 	/**
 	 * Builds a new service.
@@ -43,38 +43,17 @@ public class Service {
 	 * @param category The service's category
 	 * @param idPerson The service's id Person 
 	 */
-	public Service(int id, String title, String description, String type, String category, int idPerson, String limitDate)
+	public Service(int id, String title, String description, String type, String category )
 	{
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.type = type;
 		this.category = category;
-		this.idPerson = idPerson;
+		/*this.idPerson = idPerson;
 		this.limitDate = limitDate;
-		this.creationDate = new Date();
+		this.creationDate = new GregorianCalendar();*/
 		
-	}
-	/**
-	 * Return the service's limit date
-	 * @return the service's limit date
-	 */
-	public String getLimitDate() {
-		return limitDate;
-	}
-	/**
-	 * Modify the service's limit date
-	 * @param limitDate the service's limit date
-	 */
-	public void setLimitDate(String limitDate) {
-		this.limitDate = limitDate;
-	}
-	/**
-	 * Returns the service's creation date
-	 * @return the service's creation date
-	 */
-	public Date getCreationDate() {
-		return creationDate;
 	}
 	
 	/**
@@ -127,22 +106,38 @@ public class Service {
 		this.category = category;
 	}
 
-	public int getIdPerson() {
-		return idPerson;
-	}
-
-	public void setIdPerson(int idPerson) {
-		this.idPerson = idPerson;
-	}
-	
-	/**
-	 * 
-	 */
 	@Override
 	public String toString() {
 		return "Service [id=" + id + ", title=" + title + ", description="
 				+ description + ", type=" + type + ", category=" + category
-				+ ", idPerson=" + idPerson + "]";
+				+ "]";
 	}
+
+	/**
+	 * Return the service's limit date
+	 * @return the service's limit date
+	 */
+	/*public GregorianCalendar getLimitDate() {
+		return limitDate;
+	}*/
+	/**
+	 * Modify the service's limit date
+	 * @param limitDate the service's limit date
+	 */
+	/*public void setLimitDate(GregorianCalendar limitDate) {
+		this.limitDate = limitDate;
+	}*/
+	/**
+	 * Returns the service's creation date
+	 * @return the service's creation date
+	 */
+	/*public GregorianCalendar getCreationDate() {
+		return creationDate;
+	}*/
+	
+	/**
+	 * 
+	 */
+	
 
 }

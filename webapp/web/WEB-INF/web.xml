@@ -8,14 +8,9 @@
     id="WebApp_ID"
     version="3.0">
 
-  <servlet>
-    <servlet-name>EchangeServices</servlet-name>
-    <servlet-class>webapp.EchangeServicesServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EchangeServices</servlet-name>
-    <url-pattern>/echangeServices</url-pattern>
-  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
   
   <!-- Persons -->
   <servlet>
@@ -55,7 +50,16 @@
     <servlet-name>Add Service</servlet-name>
     <url-pattern>/addService</url-pattern>
   </servlet-mapping>
-
+  
+  <servlet>
+    <servlet-name>Service</servlet-name>
+    <servlet-class>webapp.AddServiceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Service</servlet-name>
+    <url-pattern>/serviceAdded</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>Service</servlet-name>
     <servlet-class>webapp.ServiceServlet</servlet-class>
@@ -64,5 +68,36 @@
     <servlet-name>Service</servlet-name>
     <url-pattern>/service</url-pattern>
   </servlet-mapping>
+
+  <!-- Connection DB -->
+  <env-entry>
+  <env-entry-name>host</env-entry-name>
+  <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>mysql.info.unicaen.fr</env-entry-value>
+</env-entry>
+
+<env-entry>
+  <env-entry-name>database</env-entry-name>
+  <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>21007640_8</env-entry-value>
+</env-entry>
+
+<env-entry>
+  <env-entry-name>username</env-entry-name>
+  <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>21007640</env-entry-value>
+</env-entry>
+
+<env-entry>
+  <env-entry-name>password</env-entry-name>
+  <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>Chateau47</env-entry-value>
+</env-entry>
+
+<env-entry>
+  <env-entry-name>table</env-entry-name>
+  <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>services</env-entry-value>
+</env-entry>
 
 </web-app> 

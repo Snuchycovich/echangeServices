@@ -4,7 +4,7 @@
   <div class="container">
     <div class="section">
       <h1>Ajout d'un service</h1>
-      <form action="service" method="post" class="col s12">
+      <form action="serviceAdded" method="post" class="col s12">
           <div class="row">
             <div class="input-field col s12">
                 <input type="text" name="title" class="validate active" id="title">

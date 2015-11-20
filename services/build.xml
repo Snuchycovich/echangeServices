@@ -16,14 +16,18 @@
 </target>
 
 <target name="compiletests" depends="compile">
-  <javac srcdir="." destdir="build" classpath="build" includeantruntime="false">
+  <javac srcdir="." destdir="build" classpath="build:lib/mysql-connector.jar" includeantruntime="false">
     <include name="test/**/*.java" />
   </javac>
 </target>
 
 <target name="test" depends="compiletests">
-  <java fork="yes" classname="test.TestServiceDBStub" classpath="build">
-    <jvmarg value="-ea" />
+  <java fork="yes" classname="test.TestSQLServiceDB" classpath="build:lib/mysql-connector.jar">
+  	<jvmarg value="-ea" />
+  	    <arg value="${host}" />
+  	    <arg value="${database}" />
+  	    <arg value="${username}" />
+  	    <arg value="${password}" />
   </java>
 </target>
 
