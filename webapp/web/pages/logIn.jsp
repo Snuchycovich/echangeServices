@@ -1,5 +1,6 @@
 <jsp:include page="/fragments/header.html" />
   
+  <div class="container">
     <h1>Connexion</h1>
     <p> ${nom} </p>
     <form action="auth" method="post" rol="form">

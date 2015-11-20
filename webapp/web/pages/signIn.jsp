@@ -1,5 +1,6 @@
 <jsp:include page="fragments/header.html" />
   
+  <div class="container">
     <h1>Inscription</h1>
     <form action="logIn" method="post" rol="form">
         <div class="form-group">

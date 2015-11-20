@@ -17,6 +17,7 @@
     <url-pattern>/echangeServices</url-pattern>
   </servlet-mapping>
   
+  <!-- Persons -->
   <servlet>
     <servlet-name>Inscription</servlet-name>
     <jsp-file>/pages/signIn.jsp</jsp-file>
@@ -42,6 +43,26 @@
   <servlet-mapping>
     <servlet-name>Authentication</servlet-name>
     <url-pattern>/auth</url-pattern>
+  </servlet-mapping>
+  
+
+  <!-- SERVICES -->
+  <servlet>
+    <servlet-name>Add Service</servlet-name>
+    <jsp-file>/pages/addService.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Add Service</servlet-name>
+    <url-pattern>/addService</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Service</servlet-name>
+    <servlet-class>webapp.ServiceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Service</servlet-name>
+    <url-pattern>/service</url-pattern>
   </servlet-mapping>
 
 </web-app> 

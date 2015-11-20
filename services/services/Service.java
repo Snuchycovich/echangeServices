@@ -1,7 +1,9 @@
 package services;
 
+import java.util.Date;
+
 /**
- * Class pour representer un service avec son titre, sa description, son type, et sa categorie.
+ * 
  * 
  * @author Emiliano Castillo - Universit&eacute; de Caen Basse-Normandie, France
  * @since Novembre 2015
@@ -26,6 +28,12 @@ public class Service {
 	/** The Service's category */ 
 	protected int idPerson;
 	
+	/** The Service's limit date*/
+	protected String limitDate;
+	
+	/** The Service's creation date*/
+	protected Date creationDate;
+	
 	/**
 	 * Builds a new service.
 	 * @param id The service's id
@@ -35,7 +43,7 @@ public class Service {
 	 * @param category The service's category
 	 * @param idPerson The service's id Person 
 	 */
-	public Service(int id, String title, String description, String type, String category, int idPerson)
+	public Service(int id, String title, String description, String type, String category, int idPerson, String limitDate)
 	{
 		this.id = id;
 		this.title = title;
@@ -43,8 +51,32 @@ public class Service {
 		this.type = type;
 		this.category = category;
 		this.idPerson = idPerson;
+		this.limitDate = limitDate;
+		this.creationDate = new Date();
 		
 	}
+	/**
+	 * Return the service's limit date
+	 * @return the service's limit date
+	 */
+	public String getLimitDate() {
+		return limitDate;
+	}
+	/**
+	 * Modify the service's limit date
+	 * @param limitDate the service's limit date
+	 */
+	public void setLimitDate(String limitDate) {
+		this.limitDate = limitDate;
+	}
+	/**
+	 * Returns the service's creation date
+	 * @return the service's creation date
+	 */
+	public Date getCreationDate() {
+		return creationDate;
+	}
+	
 	/**
 	 * Return the service's id
 	 * @return the service's id
