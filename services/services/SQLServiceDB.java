@@ -26,10 +26,10 @@ public class SQLServiceDB implements IServiceDB{
 	protected Connection link; 
 	
 	/**
-	 * 
-	 * @param link
-	 * @param table
-	 * @throws SQLException
+	 * Builds a new instance.
+	 * @param link An active connection to an SQL database
+	 * @param table The name of the table where to store services
+	 * @throws SQLException if a database access error occurs
 	 */
 	public SQLServiceDB(Connection link, String table) throws SQLException {
 		this.table = table;
@@ -41,15 +41,17 @@ public class SQLServiceDB implements IServiceDB{
 		this.retrieveServiceStatement = this.link.prepareStatement(query);	
 	}
 	
+	// Methods
 
-    public void addProduct (Service service) throws SQLException {
-        this.create(service);
+    /**
+     * Resets the link to the database.
+     * This method can be used in case the connection breaks down.
+     * @param link An active link to the database
+     */
+    public void setLink (Connection link) {
+        this.link=link;
     }
-
-    public List<Service> getAll () throws SQLException {
-        return this.retrieveAll();
-    }
-	
+    
     /**
      * Creates the necessary table in the database. Nothing occurs if the table already exists.
      * @throws SQLException if a database access error occurs
@@ -102,7 +104,6 @@ public class SQLServiceDB implements IServiceDB{
         	limitGC = new GregorianCalendar();
         	creationDate = rs.getDate("crationDate");
         	creationGC = new GregorianCalendar(creationDate.getTime());*/
-        	
             res.add(new Service(rs.getInt("id"), rs.getString("title"),rs.getString("description"),rs.getString("type"), rs.getString("category")));
         }
         return res;

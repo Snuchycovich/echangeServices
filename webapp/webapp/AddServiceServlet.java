@@ -30,6 +30,8 @@ public class AddServiceServlet extends HttpServlet{
             this.terminate(req,res,"Erreur d'insertion dans la base ("+e+").");
             return;
         }
+        // Everything went well
+        this.terminate(req,res,"Nous avons bien pris en compte le nouveau service, merci.");
 	}
 	
 	/**
@@ -39,7 +41,7 @@ public class AddServiceServlet extends HttpServlet{
      * @param message The message to be forwarded to table of contents
      */
     protected void terminate(HttpServletRequest req, HttpServletResponse res, String message) throws ServletException, IOException {
-        res.sendRedirect(res.encodeRedirectURL(req.getContextPath()+"/toc.jsp?message="+message));
+        res.sendRedirect(res.encodeRedirectURL(req.getContextPath()+"/index.jsp?message="+message));
     }
     
     @Override
