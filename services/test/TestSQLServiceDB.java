@@ -3,6 +3,7 @@ package test;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.SQLException;
+
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import services.SQLServiceDB;
@@ -54,8 +55,8 @@ public class TestSQLServiceDB {
 	
 	protected static void test (SQLServiceDB db) throws SQLException, AssertionError {
         db.createTables();
-        db.create(new Service(1,"Dépannage informatique","Aide pour réparer mon ordinateur", "Demande", "Informatique"));
-        db.create(new Service(2,"Jardinage","Je possède une debrou débroussailleuses je peux venir couper votre gazon", "Offre", "Jardinage"));
+        db.create(new Service(null, "Dépannage informatique","Aide pour réparer mon ordinateur", "Demande", "Informatique"));
+        db.create(new Service(null, "Jardinage","Je possède une debrou débroussailleuses je peux venir couper votre gazon", "Offre", "Jardinage"));
         List<Service> res=db.retrieveAll();
         assert res.size()==2;
         boolean id = false;
@@ -75,16 +76,25 @@ public class TestSQLServiceDB {
             }
         }
         assert id;
-        assert title == "Dépannage informatique";
-        assert description == "Aide pour réparer mon ordinateur";
-        assert type == "Demande";
-        assert category == "Informatique";
+        assert "Dépannage informatique".equals(title);
+        assert "Aide pour réparer mon ordinateur".equals(description);
+        assert "Demande".equals(type);
+        assert "Informatique".equals(category);
         Service s = db.retrieve(1);
-        assert  1 == s.getId();
-        assert s.getTitle()== "Dépannage informatique";
-        assert s.getDescription() == "Aide pour réparer mon ordinateur";
-        assert type == "Demande";
-        assert category == "Informatique";
+        assert 1 == s.getId();
+        assert "Dépannage informatique".equals(s.getTitle());
+        assert "Aide pour réparer mon ordinateur".equals(s.getDescription());
+        assert "Demande".equals(s.getType());
+        assert "Informatique".equals(s.getCategory());
+        s.setTitle("Depannage electrique");
+        try {
+			db.update(s);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        s = db.retrieve(1);
+        assert "Depannage electrique".equals(s.getTitle());
         db.delete(s);
         assert db.retrieveAll().size()== 1;
         assert db.retrieve(1) == null;

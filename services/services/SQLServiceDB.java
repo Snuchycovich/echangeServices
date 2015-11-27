@@ -1,6 +1,7 @@
 package services;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +23,9 @@ public class SQLServiceDB implements IServiceDB{
 	/** A prepared statement for retrieval of one product. */
 	private PreparedStatement retrieveServiceStatement;
 	
+	/** A prepared statement for retrieval of one product. */
+	private PreparedStatement updateServiceStatement;
+	
 	/** A link to the database. */
 	protected Connection link; 
 	
@@ -35,10 +39,12 @@ public class SQLServiceDB implements IServiceDB{
 		this.table = table;
 		this.link = link;
 		String query = null;
-		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?)";
+		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?,?,?,?,?)";
 		this.createServiceStatement = this.link.prepareStatement(query);
-		query = "SELECT FROM `"+ this.table + "` WHERE name=?";
-		this.retrieveServiceStatement = this.link.prepareStatement(query);	
+		query = "SELECT * FROM `"+ this.table + "` WHERE id=?";
+		this.retrieveServiceStatement = this.link.prepareStatement(query);
+		query = "UPDATE `" + this.table + "` SET title=?, description=?, type=?, category=? WHERE id=?";
+		this.updateServiceStatement =this.link.prepareStatement(query);
 	}
 	
 	// Methods
@@ -58,14 +64,19 @@ public class SQLServiceDB implements IServiceDB{
      */
     public void createTables () throws SQLException {
         String query="CREATE TABLE IF NOT EXISTS `"+this.table+"` (";
-        query+="`title` VARCHAR(100) NOT NULL, ";
-        query+="`description` TEXT() NOT NULL, ";
-        query+="`type` VARCHAR(100) NOT NULL, ";
-        query+="`category` VARCHAR(100) NOT NULL, ";
-        query+="PRIMARY KEY (`title`) ";
+        query+="id INT NOT NULL AUTO_INCREMENT, ";
+        query+="title VARCHAR(100) NOT NULL, ";
+        query+="description TEXT NOT NULL, ";
+        query+="type VARCHAR(100) NOT NULL, ";
+        query+="category VARCHAR(100) NOT NULL, ";
+        query+="limitDate DATETIME, ";
+        query+="creationDate DATETIME NOT NULL, ";
+        query+="PRIMARY KEY (id) ";
         query+=")";
+        System.out.println(query);
         Statement statement=this.link.createStatement();
         statement.execute(query);
+        
     }
     
 	/**
@@ -74,12 +85,16 @@ public class SQLServiceDB implements IServiceDB{
      * @throws SQLException if a database access error occurs
      */
     @Override
-    public void create (Service service) throws SQLException {
-        this.createServiceStatement.setString(1,service.getTitle());
-        this.createServiceStatement.setString(2,service.getDescription());
-        this.createServiceStatement.setString(3,service.getType());
-        this.createServiceStatement.setString(4,service.getCategory());
-        //this.createServiceStatement.setDate(5,service.getLimitDate());
+    public void create(Service service) throws SQLException {
+    	this.createServiceStatement.setObject(1,null);
+        this.createServiceStatement.setString(2,service.getTitle());
+        this.createServiceStatement.setString(3,service.getDescription());
+        this.createServiceStatement.setString(4,service.getType());
+        this.createServiceStatement.setString(5,service.getCategory());
+        java.sql.Date myDateLimitSQL = new java.sql.Date(service.getLimitDate().getTime());
+        this.createServiceStatement.setDate(6, myDateLimitSQL);
+        java.sql.Date myDateCreaSQL = new java.sql.Date(service.getCreationDate().getTime());
+        this.createServiceStatement.setDate(7, myDateCreaSQL);
         this.createServiceStatement.execute();
     }
 
@@ -95,16 +110,10 @@ public class SQLServiceDB implements IServiceDB{
         Statement statement=this.link.createStatement();
         rs=statement.executeQuery(query);
         List<Service> res=new ArrayList<Service>();
-        /*Date limitDate;
-        GregorianCalendar limitGC;
-        Date creationDate;
-        GregorianCalendar creationGC;*/
+      
         while (rs.next()) {
-        	/*limitDate = rs.getDate("limitDate");
-        	limitGC = new GregorianCalendar();
-        	creationDate = rs.getDate("crationDate");
-        	creationGC = new GregorianCalendar(creationDate.getTime());*/
-            res.add(new Service(rs.getInt("id"), rs.getString("title"),rs.getString("description"),rs.getString("type"), rs.getString("category")));
+     
+            res.add(new Service(rs.getString("title"),rs.getString("description"),rs.getString("type"), rs.getString("category"), rs.getDate("limitDate")));
         }
         return res;
     }
@@ -121,22 +130,27 @@ public class SQLServiceDB implements IServiceDB{
         if (!rs.next()) {
             return null;
         }
-        return new Service(rs.getInt("id"), rs.getString("title"),rs.getString("description"),rs.getString("type"), rs.getString("category"));
+        return new Service(rs.getString("title"),rs.getString("description"),rs.getString("type"), rs.getString("category"), rs.getDate("limitDate"));
     }
     
-
-	@Override
-	public void update(String title, String Description, String type,
-			String category, Date limitDate) throws Exception {
-		// TODO Auto-generated method stub
-		
+    /**
+     * 
+     */
+    @Override
+	public void update(Service s) throws Exception {
+		this.updateServiceStatement.setString(1, s.getTitle());
+		this.updateServiceStatement.setString(2, s.getDescription());
+		this.updateServiceStatement.setString(3, s.getTitle());
+		this.updateServiceStatement.setString(4, s.getCategory());
+		this.updateServiceStatement.setLong(5, s.getId());
+		this.updateServiceStatement.execute();
 	}
 	
 	/**
      * Drops the table from the database. Nothing occurs if the table does not exist.
      * @throws SQLException if a database access error occurs
      */
-    public void deleteTables () throws SQLException {
+    public void deleteTables() throws SQLException {
         String query="DROP TABLE IF EXISTS `"+this.table+"`";
         Statement statement=this.link.createStatement();
         statement.execute(query);
@@ -147,17 +161,10 @@ public class SQLServiceDB implements IServiceDB{
      * @param service The service
      * @throws SQLException if a database access error occurs
      */
+    @Override
     public void delete (Service service) throws SQLException {  
-        String query="DELETE FROM `"+this.table+"` WHERE name=\""+service.getId()+"\"";
+        String query="DELETE FROM `"+this.table+"` WHERE id=\""+service.getId()+"\"";
         Statement statement=this.link.createStatement();
         statement.execute(query);
     }
-
-
-	@Override
-	public void delete(int id) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

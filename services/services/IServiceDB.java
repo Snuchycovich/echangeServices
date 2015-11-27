@@ -33,15 +33,14 @@ public interface IServiceDB {
 	 * @param Description
 	 * @param type
 	 * @param category
-	 * @param limitDate
 	 * @throws Exception
 	 */
-	public void update (String title, String Description, String type, String category, Date limitDate) throws Exception;
+	public void update (Service s) throws Exception;
 	
 	/**
 	 * Remove the service with the given id from this database
 	 * @param id The service's id
 	 * @throws Exception if no service with given id exists in the list or database error occurs
 	 */
-	public void delete (int id) throws Exception;
+	public void delete (Service s) throws Exception;
 }

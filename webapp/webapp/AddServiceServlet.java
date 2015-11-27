@@ -1,7 +1,13 @@
 package webapp;
 
 import java.io.IOException;
+import java.util.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,24 +16,42 @@ import javax.servlet.http.HttpServletResponse;
 
 import services.Service;
 
+
+
 public class AddServiceServlet extends HttpServlet{
 	
 	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		String id = req.getParameter("id");
+		//String id = req.getParameter("id");
 		String title = req.getParameter("title");
 		String description = req.getParameter("description");
 		String type = req.getParameter("type");
 		String category = req.getParameter("category");
-		
-		// Insert service into DB
-		int idService = Integer.parseInt(id);
-		Service service = new Service(idService,title,description,type,category);
+		String getLimitDate = req.getParameter("limitDate");
+		DateFormat df = new SimpleDateFormat(getLimitDate);
+		Date limitDate = null;
 		try {
-            new ServicesDBHandler().getDb().create(service);
+			limitDate = df.parse(getLimitDate);
+		} catch (ParseException e1) {
+			res.sendRedirect("http://www.google.fr");
+			e1.printStackTrace();
+		}		
+		// Insert service into DB
+		Service service = new Service(title, description, type, category, limitDate);
+		try {
+			 new ServicesDBHandler().getDb().create(service);
+			
+			/*ResultSet rs = stmt.getGeneratedKeys();
+	        if (rs.next()){
+	        	resultat=rs.getInt(1);
+	        }
+	        rs.close();*/
+
+           
         } catch (Exception e) {
             this.terminate(req,res,"Erreur d'insertion dans la base ("+e+").");
+            e.printStackTrace();
             return;
         }
         // Everything went well

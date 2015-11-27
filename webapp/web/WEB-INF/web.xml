@@ -51,18 +51,9 @@
     <url-pattern>/addService</url-pattern>
   </servlet-mapping>
   
-  <!--<servlet>
-    <servlet-name>Service</servlet-name>
-    <servlet-class>webapp.AddServiceServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Service</servlet-name>
-    <url-pattern>/serviceAdded</url-pattern>
-  </servlet-mapping>-->
-  
   <servlet>
     <servlet-name>Service</servlet-name>
-    <servlet-class>webapp.ServiceServlet</servlet-class>
+    <servlet-class>webapp.AddServiceServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Service</servlet-name>

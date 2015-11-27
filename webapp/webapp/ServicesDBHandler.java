@@ -3,13 +3,14 @@ package webapp;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import services.SQLServiceDB;
+
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
+
 
 public class ServicesDBHandler {
 
@@ -46,7 +47,7 @@ public class ServicesDBHandler {
      * Releases the connection to the database.
      * @throws SQLException if any problem occurs while closing the connection
      */
-    public static void close () throws SQLException {
+    public static void close() throws SQLException {
         if (ServicesDBHandler.link!=null) {
         	ServicesDBHandler.link.close();
         }

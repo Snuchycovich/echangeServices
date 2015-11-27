@@ -13,7 +13,7 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <textarea id="description" class="materialize-textarea"></textarea>
+              <textarea id="description" name="description" class="materialize-textarea"></textarea>
               <label for="textarea1">Description</label>
             </div>
           </div>
@@ -29,7 +29,7 @@
           </div>
           <div class="row">
             <div class="input-field col s6">
-                <input type="text" name="limitdate" class="validate" id="limitdate">
+                <input type="text" name="limitDate" class="validate" id="limitdate">
                 <label for="limitdate">Date limite</label>
             </div>
           </div>

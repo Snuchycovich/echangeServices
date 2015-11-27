@@ -42,14 +42,8 @@ public class ServiceDBStub implements IServiceDB{
 		
 	}
 
-	@Override
-	public void update(String title, String Description, String type, String category, Date limitDate)
-			throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
+	
 	public void delete(int id) throws IndexOutOfBoundsException {
 		int index = -1;
 		for (int i = 0; i < services.size(); i++) {
@@ -63,6 +57,16 @@ public class ServiceDBStub implements IServiceDB{
 			throw new IndexOutOfBoundsException("No service with id" +id);
 		}
 		this.services.remove(index);
+	}
+	@Override
+	public void update(Service s) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void delete(Service s) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

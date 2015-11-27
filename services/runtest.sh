@@ -1,1 +1,1 @@
-ant test -Dhost="mysql.info.unicaen.fr:3306" -Ddatabase="21007640_8" -Dusername="21007640" -Dpassword="Chateau47"
+ant test -Dhost="mysql.info.unicaen.fr" -Ddatabase="21007640_8" -Dusername="21007640" -Dpassword="Chateau47"

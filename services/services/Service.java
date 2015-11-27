@@ -1,10 +1,12 @@
 package services;
 
+
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
  * 
- * 
+ * @author Julien  - Universit&eacute; de Caen Basse-Normandie, France
  * @author Emiliano Castillo - Universit&eacute; de Caen Basse-Normandie, France
  * @since Novembre 2015
  */
@@ -25,14 +27,11 @@ public class Service {
 	/** The Service's category */ 
 	protected String category;
 	
-	/** The Service's category */ 
-	//protected int idPerson;
-	
 	/** The Service's limit date*/
-	//protected GregorianCalendar limitDate;
+	protected Date limitDate;
 	
 	/** The Service's creation date*/
-	//protected GregorianCalendar creationDate;
+	protected Date creationDate;
 	
 	/**
 	 * Builds a new service.
@@ -43,16 +42,14 @@ public class Service {
 	 * @param category The service's category
 	 * @param idPerson The service's id Person 
 	 */
-	public Service(int id, String title, String description, String type, String category )
+	public Service(String title, String description, String type, String category, Date limitdate)
 	{
-		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.type = type;
 		this.category = category;
-		/*this.idPerson = idPerson;
 		this.limitDate = limitDate;
-		this.creationDate = new GregorianCalendar();*/
+		this.creationDate = new Date();
 		
 	}
 	
@@ -60,15 +57,8 @@ public class Service {
 	 * Return the service's id
 	 * @return the service's id
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
-	}
-	/**
-	 * Modify the service's id
-	 * @param id The service's id
-	 */
-	public void setId(int id) {
-		this.id = id;
 	}
 	/**
 	 *  Return the service's title
@@ -117,27 +107,24 @@ public class Service {
 	 * Return the service's limit date
 	 * @return the service's limit date
 	 */
-	/*public GregorianCalendar getLimitDate() {
+	public Date getLimitDate() {
 		return limitDate;
-	}*/
+	}
 	/**
 	 * Modify the service's limit date
 	 * @param limitDate the service's limit date
 	 */
-	/*public void setLimitDate(GregorianCalendar limitDate) {
+	public void setLimitDate(Date limitDate) {
 		this.limitDate = limitDate;
-	}*/
+	}
 	/**
 	 * Returns the service's creation date
 	 * @return the service's creation date
 	 */
-	/*public GregorianCalendar getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
-	}*/
-	
-	/**
-	 * 
-	 */
+	}
+
 	
 
 }

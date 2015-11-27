@@ -16,7 +16,7 @@
 </path>
 
 <target name="compile" depends="init">
-  <javac srcdir="." destdir="build/WEB-INF/classes" includeantruntime="false">
+  <javac srcdir="." destdir="build/WEB-INF/classes" includeantruntime="false" debug="true" debuglevel="vars,lines,source">
     <classpath refid="jee" />
     <classpath refid="external" />
   </javac>
