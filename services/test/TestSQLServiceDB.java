@@ -55,8 +55,8 @@ public class TestSQLServiceDB {
 	
 	protected static void test (SQLServiceDB db) throws SQLException, AssertionError {
         db.createTables();
-        db.create(new Service(null, "Dépannage informatique","Aide pour réparer mon ordinateur", "Demande", "Informatique"));
-        db.create(new Service(null, "Jardinage","Je possède une debrou débroussailleuses je peux venir couper votre gazon", "Offre", "Jardinage"));
+        db.create(new Service("Dépannage informatique","Aide pour réparer mon ordinateur", "Demande", "Informatique", null));
+        db.create(new Service("Jardinage","Je possède une debrou débroussailleuses je peux venir couper votre gazon", "Offre", "Jardinage", null));
         List<Service> res=db.retrieveAll();
         assert res.size()==2;
         boolean id = false;

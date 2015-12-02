@@ -33,7 +33,7 @@ public class ServiceDBStub implements IServiceDB{
 	@Override
 	public Service retrieve(int id) throws Exception {
 		for(Service s : this.services){
-			Integer serviceId = s.getId();
+			Integer serviceId = (int) s.getId();
 			if(serviceId.equals(id)) {
 				return s;
 			}
@@ -47,7 +47,7 @@ public class ServiceDBStub implements IServiceDB{
 	public void delete(int id) throws IndexOutOfBoundsException {
 		int index = -1;
 		for (int i = 0; i < services.size(); i++) {
-			Integer serviceId = this.services.get(i).getId();
+			Integer serviceId = (int) this.services.get(i).getId();
 			if(serviceId.equals(id)){
 				index = i;
 				break;
