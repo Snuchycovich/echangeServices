@@ -4,38 +4,29 @@
   <div class="container">
     <div class="section">
       <h1>Ajout d'un service</h1>
-      <form action="serviceAdded" method="post" class="col s12">
-          <div class="row">
-            <div class="input-field col s12">
-                <input type="text" name="title" class="validate active" id="title">
-                <label for="title">Titre</label>
+      <form action="serviceAdded" method="post">
+            <div>
+              <label for="title">Titre</label><br>
+              <input type="text" name="title" id="title">
             </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <textarea id="description" name="description" class="materialize-textarea"></textarea>
-              <label for="textarea1">Description</label>
+            <div>
+              <label for="description">Description</label><br>
+              <textarea id="description" name="description"></textarea>
             </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
-                <input type="text" name="type" class="validate" id="type">
-                <label for="type">Type</label>
+            <div>
+              <label for="type">Type</label><br>
+              <input type="text" name="type" id="type">
+                
             </div>
-             <div class="input-field col s6">
-                <input type="text" name="category" class="validate" id="category">
-                <label for="category">Catégorie</label>
+             <div>
+              <label for="category">Catégorie</label><br>
+              <input type="text" name="category" class="validate" id="category">
             </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
-                <input type="text" name="limitDate" class="validate" id="limitdate">
-                <label for="limitdate">Date limite</label>
+            <div>
+              <label for="limitdate">Date limite</label><br>
+              <input type="text" name="limitDate" id="limitdate">
             </div>
-          </div>
-          <button class="btn waves-effect waves-light" type="submit" name="action">Ajouter
-            <i class="material-icons right">send</i>
-          </button>   
+          <button type="submit" name="action">Ajouter</button>   
       </form>
     </div>    
   </div><!-- End Container -->

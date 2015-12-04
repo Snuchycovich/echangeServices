@@ -1,11 +1,15 @@
 package persons;
 
+import java.util.Date;
+
 /**
  * A class for representing persons, with a name, a first name, and an email address.
  * @author Charlotte Lecluze and Bruno Zanuttini, Universit&eacute; de Caen Basse-Normandie, France
  * @since January, 2013
  */
 public class Person {
+	
+	protected int id;
 
     /** The person's name. */
     protected String name;
@@ -15,6 +19,9 @@ public class Person {
 
     /** The person's email address. */
     protected String email;
+    
+    /** The person's subscription date. */
+    protected Date subscriptionDate;
 
     /**
      * Builds a new person.
@@ -26,7 +33,16 @@ public class Person {
         this.name=name;
         this.firstName=firstName;
         this.email=email;
+        this.subscriptionDate = new Date();
     }
+    
+    /**
+	 * Return the person's id
+	 * @return the person's id
+	 */
+	public int getId() {
+		return id;
+	}
 
     /**
      * Returns the person's name.
@@ -36,13 +52,21 @@ public class Person {
         return this.name;
     }
 
-    /**
+    public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
      * Returns the person's first name.
      * @return The person's first name.
      */
     public String getFirstName () {
         return this.firstName;
     }
+    
+    public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
     /**
      * Returns the person's email address.
@@ -50,6 +74,18 @@ public class Person {
      */
     public String getEmail () {
         return this.email;
+    }
+    
+    public void setEmail(String email) {
+		this.email = email;
+	}
+    
+    /**
+     * Returns the person's email address.
+     * @return The person's email address
+     */
+    public Date getSubscriptionDate () {
+        return this.subscriptionDate;
     }
 
     /**

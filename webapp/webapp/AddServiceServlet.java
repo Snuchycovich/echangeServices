@@ -2,6 +2,7 @@ package webapp;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Locale;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,27 +29,23 @@ public class AddServiceServlet extends HttpServlet{
 		String description = req.getParameter("description");
 		String type = req.getParameter("type");
 		String category = req.getParameter("category");
-		String getLimitDate = req.getParameter("limitDate");
-		DateFormat df = new SimpleDateFormat(getLimitDate);
+		
+		String limitDateString = req.getParameter("limitDate");
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.FRANCE);
 		Date limitDate = null;
 		try {
-			limitDate = df.parse(getLimitDate);
+			limitDate = df.parse(limitDateString);
 		} catch (ParseException e1) {
 			res.sendRedirect("http://www.google.fr");
 			e1.printStackTrace();
-		}		
-		// Insert service into DB
+		}	
+		
+		// Create service
 		Service service = new Service(title, description, type, category, limitDate);
+		
 		try {
-			 new ServicesDBHandler().getDb().create(service);
-			
-			/*ResultSet rs = stmt.getGeneratedKeys();
-	        if (rs.next()){
-	        	resultat=rs.getInt(1);
-	        }
-	        rs.close();*/
-
-           
+			// Insert service into DB
+			 new DBHandler().SQLServiceDB.create(service);
         } catch (Exception e) {
             this.terminate(req,res,"Erreur d'insertion dans la base ("+e+").");
             e.printStackTrace();
@@ -71,7 +68,7 @@ public class AddServiceServlet extends HttpServlet{
     @Override
     public void destroy () {
         try {
-            ServicesDBHandler.close();
+        	DBHandler.close();
         } catch (SQLException e) {
             this.log("Erreur lors de la cl&ocirc;ture de la connexion SQL ("+e+").");
        }

@@ -54,7 +54,8 @@ public class TestPersonDB {
         assert !instance.isValid("marie.dupont@mail.fr","");
 
         // Testing "U" methods
-        instance.update("jean.martin@mail.com",new Person("Martinet","Jeannot","jeannot.martinet@mail.com"));
+        marie.setEmail("marie.newemail@gmail.com");
+        instance.update(marie);
         assert instance.exists("jeannot.martinet@mail.com");
         Person jeannot=instance.retrieve("jeannot.martinet@mail.com");
         assert "Martinet".equals(jeannot.getName());
@@ -67,7 +68,7 @@ public class TestPersonDB {
         assert !instance.isValid("marie.dupont@mail.fr","new");
 
         // Testing "D" methods
-        instance.delete("nicolas.durand@mail.com");
+        //instance.delete("nicolas.durand@mail.com");
         assert instance.retrieveAll().size()==3;
         assert instance.retrieveAllEmails().size()==3;
         assert !instance.exists("nicolas.durand@mail.com");

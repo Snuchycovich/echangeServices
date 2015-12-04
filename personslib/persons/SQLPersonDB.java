@@ -1,7 +1,6 @@
-package services;
+package persons;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,19 +10,19 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-public class SQLServiceDB implements IServiceDB{
+public class SQLPersonDB implements IPersonDB{
 	
 	/** The name for the SQL table where to store products. */
 	protected String table;
 	
 	/** A prepared statement for creations. */
-	private PreparedStatement createServiceStatement;
+	private PreparedStatement createStatement;
 	
 	/** A prepared statement for retrieval of one product. */
-	private PreparedStatement retrieveServiceStatement;
+	private PreparedStatement retrieveStatement;
 	
 	/** A prepared statement for retrieval of one product. */
-	private PreparedStatement updateServiceStatement;
+	private PreparedStatement updateStatement;
 	
 	/** A link to the database. */
 	protected Connection link; 
@@ -34,16 +33,16 @@ public class SQLServiceDB implements IServiceDB{
 	 * @param table The name of the table where to store services
 	 * @throws SQLException if a database access error occurs
 	 */
-	public SQLServiceDB(Connection link, String table) throws SQLException {
+	public SQLPersonDB(Connection link, String table) throws SQLException {
 		this.table = table;
 		this.link = link;
 		String query = null;
-		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?,?,?,?,?)";
-		this.createServiceStatement = this.link.prepareStatement(query);
+		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?,?,?,?)";
+		this.createStatement = this.link.prepareStatement(query);
 		query = "SELECT * FROM `"+ this.table + "` WHERE id=?";
-		this.retrieveServiceStatement = this.link.prepareStatement(query);
-		query = "UPDATE `" + this.table + "` SET title=?, description=?, type=?, category=? WHERE id=?";
-		this.updateServiceStatement =this.link.prepareStatement(query);
+		this.retrieveStatement = this.link.prepareStatement(query);
+		query = "UPDATE `" + this.table + "` SET name=?, firstName=?, email=? WHERE id=?";
+		this.updateStatement =this.link.prepareStatement(query);
 	}
 	
 	// Methods
@@ -64,12 +63,11 @@ public class SQLServiceDB implements IServiceDB{
     public void createTables () throws SQLException {
         String query="CREATE TABLE IF NOT EXISTS `"+this.table+"` (";
         query+="id INT NOT NULL AUTO_INCREMENT, ";
-        query+="title VARCHAR(100) NOT NULL, ";
-        query+="description TEXT NOT NULL, ";
-        query+="type VARCHAR(100) NOT NULL, ";
-        query+="category VARCHAR(100) NOT NULL, ";
-        query+="creationDate DATETIME, ";
-        query+="limitDate DATETIME, ";
+        query+="name VARCHAR(100) NOT NULL, ";
+        query+="firstName VARCHAR(100) NOT NULL, ";
+        query+="email VARCHAR(100) NOT NULL, ";
+        query+="password TEXT NOT NULL, ";
+        query+="inscriptionDate DATETIME, ";
         query+="PRIMARY KEY (id) ";
         query+=")";
         // System.out.println(query);
@@ -84,20 +82,17 @@ public class SQLServiceDB implements IServiceDB{
      * @throws SQLException if a database access error occurs
      */
     @Override
-    public void create(Service service) throws SQLException {
-    	this.createServiceStatement.setObject(1,null);
-        this.createServiceStatement.setString(2,service.getTitle());
-        this.createServiceStatement.setString(3,service.getDescription());
-        this.createServiceStatement.setString(4,service.getType());
-        this.createServiceStatement.setString(5,service.getCategory());
+    public void create(Person person, String password) throws SQLException {
+    	this.createStatement.setObject(1,null);
+        this.createStatement.setString(2,person.getName());
+        this.createStatement.setString(3,person.getFirstName());
+        this.createStatement.setString(4,person.getEmail());
+        this.createStatement.setString(5,password);
         
-        java.sql.Timestamp myDateCreationSQL = new java.sql.Timestamp(service.getCreationDate().getTime());
-        this.createServiceStatement.setTimestamp(6, myDateCreationSQL);
+        java.sql.Timestamp subscriptionDateSQL = new java.sql.Timestamp(person.getSubscriptionDate().getTime());
+        this.createStatement.setTimestamp(6, subscriptionDateSQL);
         
-        java.sql.Timestamp myDateLimitSQL = new java.sql.Timestamp(service.getLimitDate().getTime());
-        this.createServiceStatement.setTimestamp(7, myDateLimitSQL);
-        
-        this.createServiceStatement.execute();
+        this.createStatement.execute();
     }
 
     /**
@@ -106,16 +101,16 @@ public class SQLServiceDB implements IServiceDB{
      * @throws SQLException if a database access error occurs
      */
     @Override
-    public List<Service> retrieveAll () throws SQLException {
+    public List<Person> retrieveAll () throws SQLException {
         String query="SELECT * FROM `"+this.table+"`";
         ResultSet rs=null;
         Statement statement=this.link.createStatement();
         rs=statement.executeQuery(query);
-        List<Service> res=new ArrayList<Service>();
+        List<Person> res=new ArrayList<Person>();
       
         while (rs.next()) {
      
-            res.add(new Service(rs.getString("title"),rs.getString("description"),rs.getString("type"), rs.getString("category"), rs.getDate("limitDate")));
+            res.add(new Person(rs.getString("name"),rs.getString("firstName"),rs.getString("email")));
         }
         return res;
     }
@@ -126,26 +121,25 @@ public class SQLServiceDB implements IServiceDB{
      * @return A service, or null if none with the given id exists in the database
      * @throws SQLException if a database access error occurs
      */
-    public Service retrieve (int id) throws SQLException {
-        this.retrieveServiceStatement.setInt(1,id);
-        ResultSet rs=this.retrieveServiceStatement.executeQuery();
+    public Person retrieve (int id) throws SQLException {
+        this.retrieveStatement.setInt(1,id);
+        ResultSet rs=this.retrieveStatement.executeQuery();
         if (!rs.next()) {
             return null;
         }
-        return new Service(rs.getString("title"),rs.getString("description"),rs.getString("type"), rs.getString("category"), rs.getDate("limitDate"));
+        return new Person(rs.getString("name"),rs.getString("firstName"),rs.getString("email"));
     }
     
     /**
      * 
      */
     @Override
-	public void update(Service s) throws Exception {
-		this.updateServiceStatement.setString(1, s.getTitle());
-		this.updateServiceStatement.setString(2, s.getDescription());
-		this.updateServiceStatement.setString(3, s.getTitle());
-		this.updateServiceStatement.setString(4, s.getCategory());
-		this.updateServiceStatement.setLong(5, s.getId());
-		this.updateServiceStatement.execute();
+	public void update(Person p) throws Exception {
+		this.updateStatement.setString(1, p.getName());
+		this.updateStatement.setString(2, p.getFirstName());
+		this.updateStatement.setString(3, p.getEmail());
+		this.updateStatement.setInt(4, p.getId());
+		this.updateStatement.execute();
 	}
 	
 	/**
@@ -164,9 +158,39 @@ public class SQLServiceDB implements IServiceDB{
      * @throws SQLException if a database access error occurs
      */
     @Override
-    public void delete (Service service) throws SQLException {  
-        String query="DELETE FROM `"+this.table+"` WHERE id=\""+service.getId()+"\"";
+    public void delete (int id) throws SQLException {  
+        String query="DELETE FROM `"+this.table+"` WHERE id=\""+id+"\"";
         Statement statement=this.link.createStatement();
         statement.execute(query);
     }
+
+	@Override
+	public Collection<String> retrieveAllEmails() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Person retrieve(String email) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isValid(String email, String password) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean exists(String email) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void updatePassword(String email, String password) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

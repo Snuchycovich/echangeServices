@@ -1,8 +1,8 @@
-<jsp:include page="fragments/header.html" />
+<jsp:include page="/fragments/header.html" />
   
   <div class="container">
     <h1>Inscription</h1>
-    <form action="logIn" method="post" rol="form">
+    <form action="signIn" method="post" rol="form">
         <div class="form-group">
             <label for="">Nom:</label>
         <input type="text" name="nom" class="form-control">
@@ -23,4 +23,4 @@
         <button type="submit" class="btn btn-default">S'inscrir</button>   
     </form>    
   </div><!-- End #wrapper-->
-<jsp:include page="fragments/footer.html" />
+<jsp:include page="/fragments/footer.html" />

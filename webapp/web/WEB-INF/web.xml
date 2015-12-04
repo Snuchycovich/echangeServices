@@ -15,7 +15,7 @@
   <!-- Persons -->
   <servlet>
     <servlet-name>Inscription</servlet-name>
-    <jsp-file>/pages/signIn.jsp</jsp-file>
+    <servlet-class>webapp.LogInServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Inscription</servlet-name>

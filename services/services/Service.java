@@ -2,7 +2,6 @@ package services;
 
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * 
@@ -27,11 +26,11 @@ public class Service {
 	/** The Service's category */ 
 	protected String category;
 	
-	/** The Service's limit date*/
-	protected Date limitDate;
-	
 	/** The Service's creation date*/
 	protected Date creationDate;
+	
+	/** The Service's limit date*/
+	protected Date limitDate;
 	
 	/**
 	 * Builds a new service.
@@ -42,22 +41,21 @@ public class Service {
 	 * @param category The service's category
 	 * @param idPerson The service's id Person 
 	 */
-	public Service(String title, String description, String type, String category, Date limitdate)
+	public Service(String title, String description, String type, String category, Date limitDate)
 	{
 		this.title = title;
 		this.description = description;
 		this.type = type;
 		this.category = category;
-		this.limitDate = limitDate;
 		this.creationDate = new Date();
-		
+		this.limitDate = limitDate;
 	}
 	
 	/**
 	 * Return the service's id
 	 * @return the service's id
 	 */
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	/**
@@ -103,20 +101,7 @@ public class Service {
 				+ "]";
 	}
 
-	/**
-	 * Return the service's limit date
-	 * @return the service's limit date
-	 */
-	public Date getLimitDate() {
-		return limitDate;
-	}
-	/**
-	 * Modify the service's limit date
-	 * @param limitDate the service's limit date
-	 */
-	public void setLimitDate(Date limitDate) {
-		this.limitDate = limitDate;
-	}
+	
 	/**
 	 * Returns the service's creation date
 	 * @return the service's creation date
@@ -125,6 +110,20 @@ public class Service {
 		return creationDate;
 	}
 
+	/**
+	 * Return the service's limit date
+	 * @return the service's limit date
+	 */
+	public Date getLimitDate() {
+		return limitDate;
+	}
 	
+	/**
+	 * Modify the service's limit date
+	 * @param limitDate the service's limit date
+	 */
+	public void setLimitDate(Date limitDate) {
+		this.limitDate = limitDate;
+	}
 
 }

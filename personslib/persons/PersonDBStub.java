@@ -83,16 +83,16 @@ public class PersonDBStub implements IPersonDB {
     }
 
     @Override
-    public void update (String email, Person person) throws IndexOutOfBoundsException {
+    public void update (Person person) throws IndexOutOfBoundsException {
         int index=-1;
         for (int i=0; i<this.persons.size(); i++) {
-            if (this.persons.get(i).getEmail().equals(email)) {
+            if (this.persons.get(i).getEmail().equals(person.getEmail())) {
                 index=i;
                 break;
             }
         }
         if (index==-1) {
-            throw new IndexOutOfBoundsException("No person with email "+email);
+            throw new IndexOutOfBoundsException("No person with email "+person.getEmail());
         }
         this.persons.set(index,person);
     }
@@ -113,16 +113,16 @@ public class PersonDBStub implements IPersonDB {
     }
 
     @Override
-    public void delete (String email) throws IndexOutOfBoundsException {    
+    public void delete (int id) throws IndexOutOfBoundsException {    
         int index=-1;
         for (int i=0; i<this.persons.size(); i++) {
-            if (this.persons.get(i).getEmail().equals(email)) {
+            if (this.persons.get(i).getEmail().equals(id)) {
                 index=i;
                 break;
             }
         }
         if (index==-1) {
-            throw new IndexOutOfBoundsException("No person with email "+email);
+            throw new IndexOutOfBoundsException("No person with email "+id);
         }
         this.persons.remove(index);
     }

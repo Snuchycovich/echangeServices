@@ -1,16 +1,19 @@
 package services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import services.Service;
 
 public class TestServiceDB {
 
 	public static void test (IServiceDB instance) throws Exception {
-        instance.create(new Service("Depannage Informatique","Description dépannage informatique", "Offre", "Informatique", null));
-        instance.create(new Service("Jardinage", "Description dépannage jardinage","Demande", "Maison", null));
-        instance.create(new Service("Tâches Ménagères", "Description dépannage tâches ménagères","Offre", "Maison", null));
-        instance.create(new Service("Cours d'anglais", "Description dépannage cours","Demande", "Enseigement", null));
+		
+		Date testDate = new Date("11/22/2013 00:53");
+        instance.create(new Service("Depannage Informatique","Description dépannage informatique", "Offre", "Informatique", testDate));
+        instance.create(new Service("Jardinage", "Description dépannage jardinage","Demande", "Maison", testDate));
+        instance.create(new Service("Tâches Ménagères", "Description dépannage tâches ménagères","Offre", "Maison", testDate));
+        instance.create(new Service("Cours d'anglais", "Description dépannage cours","Demande", "Enseigement", testDate));
         
      // Testing "R" methods
         Collection<Service> all=instance.retrieveAll();

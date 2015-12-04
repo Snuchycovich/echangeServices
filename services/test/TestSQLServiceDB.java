@@ -1,5 +1,6 @@
 package test;
 
+import java.util.Date;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -55,8 +56,9 @@ public class TestSQLServiceDB {
 	
 	protected static void test (SQLServiceDB db) throws SQLException, AssertionError {
         db.createTables();
-        db.create(new Service("Dépannage informatique","Aide pour réparer mon ordinateur", "Demande", "Informatique", null));
-        db.create(new Service("Jardinage","Je possède une debrou débroussailleuses je peux venir couper votre gazon", "Offre", "Jardinage", null));
+        Date testDate = new Date("11/22/2013 00:53");
+        db.create(new Service("Dépannage informatique","Aide pour réparer mon ordinateur", "Demande", "Informatique", testDate));
+        db.create(new Service("Jardinage","Je possède une debrou débroussailleuses je peux venir couper votre gazon", "Offre", "Jardinage", testDate));
         List<Service> res=db.retrieveAll();
         assert res.size()==2;
         boolean id = false;

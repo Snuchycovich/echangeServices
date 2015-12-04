@@ -25,7 +25,7 @@ public class LogInServlet extends HttpServlet {
         String nom = req.getParameter("nom");
         //out.println("<p>bonjour "+nom+"</p>");
         req.setAttribute("nom", nom);
-        req.getRequestDispatcher("/pages/logIn.jsp").forward(req, resp);
+        req.getRequestDispatcher("/pages/signIn.jsp").forward(req, resp);
         
     }
 }

@@ -69,13 +69,12 @@ public interface IPersonDB {
      * Updates the person associated to a given email address in the database.
      * Given that the email address is part of an instance of Person, this method
      * may be safely used to change the email address itself.
-     * @param email The email address of the person to update
      * @param person An instance of Person to store in place of the existing one
      * @throws Exception if no person is currently associated to the given email address,
      * or the new instance has an email address which already exists in the database, or a
      * database access error occurs
      */
-    public void update (String email, Person person) throws Exception;
+    public void update (Person person) throws Exception;
 
     /**
      * Updates a person's password in the database.
@@ -94,6 +93,6 @@ public interface IPersonDB {
      * @throws Exception if no person is currently associated to the given email address
      * or a database access error occurs
      */
-    public void delete (String email) throws Exception;
+    public void delete (int id) throws Exception;
 
 }
