@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.List;
 
 public class SQLPersonDB implements IPersonDB{
@@ -37,9 +38,9 @@ public class SQLPersonDB implements IPersonDB{
 		this.table = table;
 		this.link = link;
 		String query = null;
-		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?,?,?,?)";
+		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?,?,MD5(?),?)";
 		this.createStatement = this.link.prepareStatement(query);
-		query = "SELECT * FROM `"+ this.table + "` WHERE id=?";
+		query = "SELECT * FROM `"+ this.table + "` WHERE email=?";
 		this.retrieveStatement = this.link.prepareStatement(query);
 		query = "UPDATE `" + this.table + "` SET name=?, firstName=?, email=? WHERE id=?";
 		this.updateStatement =this.link.prepareStatement(query);
@@ -101,34 +102,22 @@ public class SQLPersonDB implements IPersonDB{
      * @throws SQLException if a database access error occurs
      */
     @Override
-    public List<Person> retrieveAll () throws SQLException {
+    public Collection<Person> retrieveAll() throws SQLException {
         String query="SELECT * FROM `"+this.table+"`";
         ResultSet rs=null;
         Statement statement=this.link.createStatement();
         rs=statement.executeQuery(query);
-        List<Person> res=new ArrayList<Person>();
-      
+        
+        List<Person> persons=new ArrayList<Person>();
+        
         while (rs.next()) {
-     
-            res.add(new Person(rs.getString("name"),rs.getString("firstName"),rs.getString("email")));
+        	persons.add(new Person(rs.getString("name"),rs.getString("firstName"),rs.getString("email")));
         }
-        return res;
+       
+        return persons;
     }
 
-    /**
-     * Retrieves a service in the database.
-     * @param id The id of the service
-     * @return A service, or null if none with the given id exists in the database
-     * @throws SQLException if a database access error occurs
-     */
-    public Person retrieve (int id) throws SQLException {
-        this.retrieveStatement.setInt(1,id);
-        ResultSet rs=this.retrieveStatement.executeQuery();
-        if (!rs.next()) {
-            return null;
-        }
-        return new Person(rs.getString("name"),rs.getString("firstName"),rs.getString("email"));
-    }
+    
     
     /**
      * 
@@ -170,16 +159,35 @@ public class SQLPersonDB implements IPersonDB{
 		return null;
 	}
 
+	
+	/**
+     * Retrieves a service in the database.
+     * @param id The id of the service
+     * @return A service, or null if none with the given id exists in the database
+     * @throws SQLException if a database access error occurs
+     */
 	@Override
-	public Person retrieve(String email) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public Person retrieve (String email) throws Exception {
+        this.retrieveStatement.setString(1,email);
+        ResultSet rs=this.retrieveStatement.executeQuery();
+        if (!rs.next()) {
+            return null;
+        }
+        return new Person(rs.getString("name"),rs.getString("firstName"),rs.getString("email"));
+    }
 
 	@Override
 	public boolean isValid(String email, String password) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		String query = "SELECT id FROM `"+ this.table + "` WHERE email=? AND password=MD5(?)";
+		PreparedStatement statement = this.link.prepareStatement(query);
+		statement.setString(1,email);
+		statement.setString(2,password);
+		ResultSet rs = statement.executeQuery();
+        if (!rs.next()) {
+        	return false;
+        } else {
+        	return true;
+        }
 	}
 
 	@Override

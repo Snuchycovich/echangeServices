@@ -14,12 +14,24 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import persons.Person;
 import services.Service;
 
 
 
 public class AddServiceServlet extends HttpServlet{
+	
+	@Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		Person person = (Person) session.getAttribute( "person" );
+		
+		req.setAttribute( "person", person );
+		req.getRequestDispatcher("/pages/addService.jsp").forward(req, res);
+	}
+	
 	
 	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

@@ -10,19 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import persons.*;
 
-class SignInServlet extends HttpServlet {
+public class SignInServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)
+	        throws ServletException, IOException {
+		req.getRequestDispatcher("/pages/signIn.jsp").forward(req, res);
+	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
         throws ServletException, IOException {
-        this.log("Une exécution de la servlet...");
+     
         res.setContentType("text/html;charset=UTF-8");
-        PrintWriter out=null;
-        try {
-            out=res.getWriter();
-        } catch (IOException e) {
-            out.close();
-            throw e;
-        }
         
         // Main operation
         String nom = req.getParameter("nom");
@@ -41,13 +39,7 @@ class SignInServlet extends HttpServlet {
             return;
         }
         // Everything went well
-        this.terminate(req,res,"Nous avons bien pris en compte le nouveau service, merci.");
-        
-        //personsDBStub.create(p, password);
-        /*String nom = req.getParameter("nom");
-        out.println("<p>bonjour "+nom+"</p>");*/
-        
-        req.getRequestDispatcher("/pages/signIn.jsp").forward(req, res);
+        this.terminate(req,res,"Votre inscription s'est déroulée avec succès, merci.");
   	}
 	
 	/**
