@@ -1,4 +1,4 @@
-<jsp:include page="/fragments/header.html" />
+<jsp:include page="/fragments/header.jsp" />
   
   <div class="container">
     <h1>Connexion</h1>
@@ -13,6 +13,7 @@
             <input type="password" name="password" class="form-control">
         </div>
         <button type="submit" class="btn btn-default">Se connecter</button>   
-    </form>    
+    </form>
+    <p>Toujours pas inscrit ? <a href="signIn" title="inscription">Inscrivez-vous en cliquant ici</a></p>    
   </div><!-- End #wrapper-->
 <jsp:include page="/fragments/footer.html" />

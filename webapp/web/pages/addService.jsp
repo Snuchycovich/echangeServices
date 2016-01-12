@@ -1,5 +1,4 @@
-<jsp:include page="/fragments/header.html" />
-<%@ page contentType="text/html; charset=UTF-8" %>
+<jsp:include page="/fragments/header.jsp" />
 
 <p>Bonjour ${person.email}</p>
     
@@ -17,12 +16,10 @@
             </div>
             <div>
               <label for="type">Type</label><br>
-              <input type="text" name="type" id="type">
+              <input type="radio" name="type" value="0"> Demande<br>
+  			  <input type="radio" name="type" value="1"> Offer<br>
+  
                 
-            </div>
-             <div>
-              <label for="category">Catégorie</label><br>
-              <input type="text" name="category" class="validate" id="category">
             </div>
             <div>
               <label for="limitdate">Date limite</label><br>

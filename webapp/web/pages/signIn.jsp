@@ -1,4 +1,4 @@
-<jsp:include page="/fragments/header.html" />
+<jsp:include page="/fragments/header.jsp" />
   
   <div class="container">
     <h1>Inscription</h1>
@@ -8,7 +8,7 @@
         <input type="text" name="nom" class="form-control">
         </div>
         <div class="form-group">
-            <label for="">PÃ©nom:</label>
+            <label for="">Prénom:</label>
             <input type="text" name="prenom" class="form-control">
         </div>
         <div class="form-group">

@@ -1,9 +1,16 @@
 <?xml version="1.0" ?>
 <project name="Services Library" default="dist">
 
+<path id="external">
+	<fileset dir="lib">
+	<include name="**/*.jar" />
+	</fileset>
+</path>
+
 <target name="compile" depends="init">				
   <javac srcdir="." destdir="build" includeantruntime="false" debug="true" debuglevel="vars,lines,source">
-    <include name="services/**/*.java" />
+    <include name="services/**/*.java"/>
+    <classpath refid="external"/>
   </javac>
 </target>
 

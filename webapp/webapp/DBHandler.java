@@ -21,8 +21,11 @@ public class DBHandler {
     /** The unique instance of class SQLServicesDB (null if none). */
     public static SQLServiceDB SQLServiceDB;
     
-    /** The unique instance of class SQLServicesDB (null if none). */
+    /** The unique instance of class SQLPersonDB (null if none). */
     public static SQLPersonDB SQLPersonDB;
+    
+    /** The unique instance of class SQLServicePersonDB (null if none). */
+    public static SQLPersonServiceDB SQLPersonServiceDB;
     
     /**
      * Builds a new instance, using the strings used in the environment.
@@ -31,6 +34,9 @@ public class DBHandler {
      */
     public DBHandler () throws NamingException, SQLException {
         if (DBHandler.SQLServiceDB==null) {
+        	DBHandler.initialize();
+        }
+        if (DBHandler.SQLPersonServiceDB==null) {
         	DBHandler.initialize();
         }
     }
@@ -65,12 +71,15 @@ public class DBHandler {
         
         SQLPersonDB = new SQLPersonDB(DBHandler.getLink(host,database,username,password), "persons");
         SQLPersonDB.createTables();
+        
+        SQLPersonServiceDB = new SQLPersonServiceDB(DBHandler.getLink(host,database,username,password), "personService");
+        SQLPersonServiceDB.createTables();
     }
     
     /**
      * Returns the link to the database, which is active.
      * @param host The hostname for the DBMS
-     * @paam database The name for the database to use in the DBMS
+     * @param database The name for the database to use in the DBMS
      * @param username The username for connecting to the database
      * @param password The password for connecting to the database
      * @return An active link to the database

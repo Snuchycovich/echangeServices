@@ -1,6 +1,7 @@
 package webapp;
 
 import java.io.IOException;
+
 import java.util.Date;
 import java.util.Locale;
 import java.sql.ResultSet;
@@ -27,7 +28,10 @@ public class AddServiceServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		Person person = (Person) session.getAttribute( "person" );
-		
+		if (person == null) {
+			res.sendRedirect("logIn");
+			return;
+		}
 		req.setAttribute( "person", person );
 		req.getRequestDispatcher("/pages/addService.jsp").forward(req, res);
 	}
@@ -36,11 +40,12 @@ public class AddServiceServlet extends HttpServlet{
 	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		//String id = req.getParameter("id");
+		String id = req.getParameter("id");
 		String title = req.getParameter("title");
 		String description = req.getParameter("description");
-		String type = req.getParameter("type");
-		String category = req.getParameter("category");
+		String typedb = req.getParameter("type");
+		
+		boolean type = Boolean.valueOf(typedb);
 		
 		String limitDateString = req.getParameter("limitDate");
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.FRANCE);
@@ -50,14 +55,23 @@ public class AddServiceServlet extends HttpServlet{
 		} catch (ParseException e1) {
 			res.sendRedirect("http://www.google.fr");
 			e1.printStackTrace();
-		}	
+		}
 		
 		// Create service
-		Service service = new Service(title, description, type, category, limitDate);
+		Service service = new Service(title);
+		int idService = service.getId();
+		
+		HttpSession session = req.getSession();
+		Person person = (Person) session.getAttribute("person");
+		String emailPerson = person.getEmail();
+		
+		PersonServiceAssociation servicePersonAssociation = new PersonServiceAssociation(emailPerson, idService, description, limitDate, type);
+		
 		
 		try {
 			// Insert service into DB
 			 new DBHandler().SQLServiceDB.create(service);
+			 new DBHandler().SQLPersonServiceDB.create(servicePersonAssociation);
         } catch (Exception e) {
             this.terminate(req,res,"Erreur d'insertion dans la base ("+e+").");
             e.printStackTrace();

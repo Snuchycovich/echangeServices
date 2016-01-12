@@ -1,4 +1,4 @@
-<jsp:include page="fragments/header.html" />
+<jsp:include page="fragments/header.jsp" />
   
 
   <div class="container">
