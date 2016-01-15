@@ -135,13 +135,14 @@ public class SQLPersonServiceDB {
         return new PersonServiceAssociation(rs.getInt("idPerson"), rs.getInt("idService"), rs.getString("description"), rs.getDate("creationDate"), rs.getDate("limitDate"), rs.getInt("status"));
     }
     
-    public PersonServiceAssociation retrieveByPerson (Person person) throws SQLException {
+    public List<PersonServiceAssociation> retrieveAllByPerson (Person person) throws SQLException {
         this.retrieveServiceByPersonStatement.setInt(1, person.getId());
-        ResultSet rs=this.retrievePersonServiceStatement.executeQuery();
-        if (!rs.next()) {
-            return null;
+        ResultSet rs=this.retrieveServiceByPersonStatement.executeQuery();
+        List<PersonServiceAssociation> res=new ArrayList<PersonServiceAssociation>();
+        while (rs.next()) {
+            res.add(new PersonServiceAssociation(rs.getInt("idPerson"), rs.getInt("idService"), rs.getString("description"), rs.getDate("creationDate"), rs.getDate("limitDate"), rs.getInt("status")));
         }
-        return new PersonServiceAssociation(rs.getInt("idPerson"), rs.getInt("idService"), rs.getString("description"), rs.getDate("creationDate"), rs.getDate("limitDate"), rs.getInt("status"));
+        return res;
     }
 	
 	/**

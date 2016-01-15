@@ -37,7 +37,11 @@ public class LogInServlet extends HttpServlet {
 				 resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath()+"/index.jsp?message=Connexion OK"));
 				 
 			 } else {
-				 resp.sendRedirect("http://www.unicaen.fr");
+				 //resp.sendRedirect("http://www.unicaen.fr");
+				 String txtError = "Combinaison login/mot de passe incorrect.";
+				 req.setAttribute( "error", txtError );
+				 
+				 req.getRequestDispatcher("/pages/logIn.jsp").forward(req, resp);
 			 }
         } catch (Exception e) {
             

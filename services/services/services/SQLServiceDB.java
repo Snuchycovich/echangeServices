@@ -82,7 +82,14 @@ public class SQLServiceDB implements IServiceDB{
     public int create(Service service) throws SQLException {
     	this.createServiceStatement.setObject(1,null);
         this.createServiceStatement.setString(2,service.getTitle());
-        return this.createServiceStatement.executeUpdate();
+        this.createServiceStatement.executeUpdate();
+        
+        ResultSet rs = createServiceStatement.getGeneratedKeys();
+        int lastId = -1;
+        if (rs.next()) {
+        	lastId = rs.getInt(1);
+        }
+        return lastId;
     }
 
     /**

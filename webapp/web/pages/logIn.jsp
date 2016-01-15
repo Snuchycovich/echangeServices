@@ -2,7 +2,7 @@
 <div class="page">
   <div class="container">
     <h1>Connexion</h1>
-    <p> ${nom} </p>
+    <p> ${error} </p>
     <form action="logIn" method="post" rol="form">
         <div class="form-group">
             <label for="">Email:</label>

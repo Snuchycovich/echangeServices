@@ -1,9 +1,9 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="url">${req.requestURL}</c:set>
 <c:set var="uri" value="${req.requestURI}" />
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -33,23 +33,34 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">KoodMain</a>
+                <a class="navbar-brand" href="home">KoodMain</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
+	
+					<c:choose>
+						<c:when test="${person == null}">
+							<li class="page-scroll">
+								<a href="signIn">Inscription</a>
+							</li>
+							<li class="page-scroll">
+								<a href="logIn">Connexion</a>
+							</li>
+						</c:when>    
+						<c:otherwise>
+							<li class="page-scroll">
+								<a href="mon-espace">Mon espace</a>
+							</li>
+							<li class="page-scroll">
+								<a href="logOut">Déconnexion</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+                    
                     <li class="page-scroll">
-                        <a href="signIn">Inscription</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="logIn">Connexion</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="addService">Ajouter un Service</a>
+                        <a href="addService">Rechercher un Service</a>
                     </li>
                 </ul>
             </div>
