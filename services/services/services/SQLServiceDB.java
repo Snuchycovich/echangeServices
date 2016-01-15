@@ -37,11 +37,11 @@ public class SQLServiceDB implements IServiceDB{
 		this.table = table;
 		this.link = link;
 		String query = null;
-		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?,?)";
+		query = "INSERT INTO `" + this.table + "` VALUES(?,?)";
 		this.createServiceStatement = this.link.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		query = "SELECT * FROM `"+ this.table + "` WHERE id=?";
 		this.retrieveServiceStatement = this.link.prepareStatement(query);
-		query = "UPDATE `" + this.table + "` SET title=?, limitDate=? WHERE id=?";
+		query = "UPDATE `" + this.table + "` SET title=? WHERE id=?";
 		this.updateServiceStatement =this.link.prepareStatement(query);
 	}
 	
@@ -64,8 +64,6 @@ public class SQLServiceDB implements IServiceDB{
         String query="CREATE TABLE IF NOT EXISTS `"+this.table+"` (";
         query+="id INT NOT NULL AUTO_INCREMENT, ";
         query+="title VARCHAR(100) NOT NULL, ";
-        query+="limitDate DATETIME, ";
-        query+="status INT(1), ";
         query+="PRIMARY KEY (id) ";
         query+=")";
 
@@ -84,10 +82,6 @@ public class SQLServiceDB implements IServiceDB{
     public int create(Service service) throws SQLException {
     	this.createServiceStatement.setObject(1,null);
         this.createServiceStatement.setString(2,service.getTitle());
-        
-        java.sql.Timestamp limitDateSQL = new java.sql.Timestamp(service.getLimitDate().getTime());
-        this.createServiceStatement.setTimestamp(3, limitDateSQL);
-        this.createServiceStatement.setInt(4,service.getStatus());
         return this.createServiceStatement.executeUpdate();
     }
 
@@ -105,8 +99,7 @@ public class SQLServiceDB implements IServiceDB{
         List<Service> res=new ArrayList<Service>();
       
         while (rs.next()) {
-     
-            res.add(new Service(rs.getInt("id"), rs.getString("title"), rs.getDate("limitDate"), rs.getInt("status")));
+            res.add(new Service(rs.getInt("id"), rs.getString("title")));
         }
         return res;
     }
@@ -123,7 +116,7 @@ public class SQLServiceDB implements IServiceDB{
         if (!rs.next()) {
             return null;
         }
-        return new Service(rs.getInt("id"), rs.getString("title"), rs.getDate("limitDate"), rs.getInt("status"));
+        return new Service(rs.getInt("id"), rs.getString("title"));
     }
     
     /**
@@ -132,8 +125,7 @@ public class SQLServiceDB implements IServiceDB{
     @Override
 	public void update(Service s) throws Exception {
 		this.updateServiceStatement.setString(1, s.getTitle());
-		this.updateServiceStatement.setDate(2, (Date) s.getLimitDate());
-		this.updateServiceStatement.setInt(3, s.getId());
+		this.updateServiceStatement.setInt(2, s.getId());
 		this.updateServiceStatement.execute();
 	}
 	

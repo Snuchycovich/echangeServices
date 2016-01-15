@@ -55,7 +55,7 @@ public class AddServiceServlet extends HttpServlet{
 		}
 		
 		// Create service
-		Service service = new Service(title, limitDate, status);
+		Service service = new Service(title);
 		
 		try {
 			// Insert service into DB
@@ -70,7 +70,7 @@ public class AddServiceServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 		Person person = (Person) session.getAttribute("person");
 		
-		PersonServiceAssociation servicePersonAssociation = new PersonServiceAssociation(person.getId(), service.getId(), description, limitDate);
+		PersonServiceAssociation servicePersonAssociation = new PersonServiceAssociation(person.getId(), service.getId(), description, limitDate, status);
 		
 		// Insert servicePersonAssociation into DB
 		try {

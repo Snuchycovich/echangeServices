@@ -46,27 +46,30 @@
   <env-entry>
   <env-entry-name>host</env-entry-name>
   <env-entry-type>java.lang.String</env-entry-type>
-  <!-- <env-entry-value>mysql.info.unicaen.fr</env-entry-value> -->
-  <env-entry-value>localhost</env-entry-value>
+  <env-entry-value>mysql.info.unicaen.fr</env-entry-value>
+  <!-- <env-entry-value>localhost</env-entry-value> -->
 </env-entry>
 
 <env-entry>
   <env-entry-name>database</env-entry-name>
   <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>20704112_7</env-entry-value>
   <!-- <env-entry-value>21007640_8</env-entry-value> -->
-  <env-entry-value>koodmain</env-entry-value>
+  <!-- <env-entry-value>koodmain</env-entry-value> -->
 </env-entry>
 
 <env-entry>
   <env-entry-name>username</env-entry-name>
   <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>20704112</env-entry-value>
   <!-- <env-entry-value>21007640</env-entry-value> -->
-  <env-entry-value>root</env-entry-value>
+  <!-- <env-entry-value>root</env-entry-value> -->
 </env-entry>
 
 <env-entry>
   <env-entry-name>password</env-entry-name>
   <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>bohquahjiexoipho</env-entry-value>
   <!-- <env-entry-value>Chateau47</env-entry-value> -->
   <!--<env-entry-value></env-entry-value>-->
 </env-entry>

@@ -16,10 +16,10 @@ public class TestServiceDB {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.FRANCE);
 		Date limitDate = df.parse(limitDateString);
 		
-        instance.create(new Service("Depannage Informatique", limitDate, 0));
-        instance.create(new Service("Jardinage", limitDate, 1));
-        instance.create(new Service("Tâches Ménagères", limitDate, 0));
-        instance.create(new Service("Cours d'anglais", limitDate, 1));
+        instance.create(new Service("Depannage Informatique"));
+        instance.create(new Service("Jardinage"));
+        instance.create(new Service("Tâches Ménagères"));
+        instance.create(new Service("Cours d'anglais"));
         
         Collection<Service> all=instance.retrieveAll();
         assert all.size()==4;

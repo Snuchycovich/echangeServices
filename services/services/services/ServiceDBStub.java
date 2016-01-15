@@ -63,7 +63,6 @@ public class ServiceDBStub implements IServiceDB{
 			Integer serviceId = (int) service.getId();
 			if(serviceId.equals(s.getId())) {
 				service.setTitle(s.getTitle());
-				service.setLimitDate(s.getLimitDate());
 			}
 		}
 	}

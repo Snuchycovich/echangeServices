@@ -41,7 +41,7 @@ public class SQLPersonServiceDB {
 		this.table = table;
 		this.link = link;
 		String query = null;
-		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?,?)";
+		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?,?,?,?)";
 		this.createPersonServiceStatement = this.link.prepareStatement(query);
 		query = "SELECT * FROM `"+ this.table + "` WHERE idPerson=? AND idService=?";
 		this.retrievePersonServiceStatement = this.link.prepareStatement(query);
@@ -69,7 +69,9 @@ public class SQLPersonServiceDB {
         query+="idPerson int(11), ";
         query+="idService int(11), ";
         query+="description TEXT, ";
-        query+="creationDate DATETIME";
+        query+="creationDate DATETIME, ";
+        query+="limitDate DATETIME, ";
+        query+="status int(11)";
         query+=")";
         // System.out.println(query);
         Statement statement=this.link.createStatement();
@@ -91,6 +93,11 @@ public class SQLPersonServiceDB {
         java.sql.Timestamp creationDateSQL = new java.sql.Timestamp(psa.getCreationDate().getTime());
         this.createPersonServiceStatement.setTimestamp(4,creationDateSQL);
         
+        java.sql.Timestamp limitDateSQL = new java.sql.Timestamp(psa.getLimitDate().getTime());
+        this.createPersonServiceStatement.setTimestamp(5,limitDateSQL);
+        
+        this.createPersonServiceStatement.setInt(6,psa.getStatus());
+        
         this.createPersonServiceStatement.execute();
     }
 
@@ -107,7 +114,7 @@ public class SQLPersonServiceDB {
         List<PersonServiceAssociation> res=new ArrayList<PersonServiceAssociation>();
       
         while (rs.next()) {
-            res.add(new PersonServiceAssociation(rs.getInt("idPerson"), rs.getInt("idService"), rs.getString("description"), rs.getDate("creationDate")));
+            res.add(new PersonServiceAssociation(rs.getInt("idPerson"), rs.getInt("idService"), rs.getString("description"), rs.getDate("creationDate"), rs.getDate("limitDate"), rs.getInt("status")));
         }
         return res;
     }
@@ -125,7 +132,7 @@ public class SQLPersonServiceDB {
         if (!rs.next()) {
             return null;
         }
-        return new PersonServiceAssociation(rs.getInt("idPerson"), rs.getInt("idService"), rs.getString("description"), rs.getDate("creationDate"));
+        return new PersonServiceAssociation(rs.getInt("idPerson"), rs.getInt("idService"), rs.getString("description"), rs.getDate("creationDate"), rs.getDate("limitDate"), rs.getInt("status"));
     }
     
     public PersonServiceAssociation retrieveByPerson (Person person) throws SQLException {
@@ -134,7 +141,7 @@ public class SQLPersonServiceDB {
         if (!rs.next()) {
             return null;
         }
-        return new PersonServiceAssociation(rs.getInt("idPerson"), rs.getInt("idService"), rs.getString("description"), rs.getDate("creationDate"));
+        return new PersonServiceAssociation(rs.getInt("idPerson"), rs.getInt("idService"), rs.getString("description"), rs.getDate("creationDate"), rs.getDate("limitDate"), rs.getInt("status"));
     }
 	
 	/**
