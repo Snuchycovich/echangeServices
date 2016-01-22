@@ -83,7 +83,7 @@
   <env-entry-type>java.lang.String</env-entry-type>
   <env-entry-value>20704112_7</env-entry-value>
   <!-- <env-entry-value>21007640_8</env-entry-value> -->
-  <env-entry-value>koodmain</env-entry-value>
+  <!-- <env-entry-value>koodmain</env-entry-value> -->
 </env-entry>
 
 <env-entry>
