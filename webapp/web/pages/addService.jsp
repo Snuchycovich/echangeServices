@@ -8,6 +8,14 @@
         <div class="form-group">
           <label for="title">Titre</label><br>
           <input type="text" name="title" class="form-control" id="title">
+            <label for="sel2">Selectionner un service</label>
+            <select class="form-control" id="service">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
         </div>
         <div  class="form-group">
           <label for="description">Description</label><br>
