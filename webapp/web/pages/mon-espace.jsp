@@ -5,25 +5,38 @@
 
 <div class="page">
   <div class="container">
-    <h1>Mon espace</h1>
-    <p>Bonjour ${person.firstName}, voici la liste des offres vous concernant : </p>
-	<div id="demandes">
-		<h2>Demandes</h2>
-		<ul>
-			<c:forEach var="service" items="${listeServicesDemandes}">
-				<li>${service.title} <a href="#">(demander un cycle de service)</a></li>
-			</c:forEach>
-		</ul>
-	</div>
-	<div id="offres">
-		<h2>Offres</h2>
-		<ul>
-			<c:forEach var="service" items="${listeServicesOffres}">
-				<li>${service.title} <a href="#">(demander un cycle de service)</a></li>
-			</c:forEach>
-		</ul>
-	</div>
-  </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="row">
+          <h1>Mon espace</h1>
+          <p>Bonjour ${person.firstName}, voici la liste des offres vous concernant : </p>
+        </div>
+        <div class="row">
+          <div class="col-lg-6" id="demandes">
+        		<h2 class="text-center">Demandes</h2>
+        			<c:forEach var="service" items="${listeServicesDemandes}">
+                <div class="serviceContainer">
+        				<h5>${service.title}</h5>
+                <a href="#">(demander un cycle de service)</a>
+                </div>
+        			</c:forEach>
+        	</div>
+          <div class="col-lg-6" id="offres">
+            <h2 class="text-center">Offres</h2>
+              <c:forEach var="service" items="${listeServicesOffres}">
+                <div class="serviceContainer">
+                <h5>${service.title}</h5>
+                <a href="#">(demander un cycle de service)</a>
+              </div>
+              </c:forEach>
+          </div>
+        </div>
+        </div>
+        <div class="col-lg-4">
+          <h2 class="text-center">Le Service pour moi<h2>
+        </div>
+      </div>
+    </div>
 </div>
 
 <jsp:include page="/fragments/footer.html" />
