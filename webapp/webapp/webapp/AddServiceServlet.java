@@ -1,9 +1,9 @@
 package webapp;
 
 import java.io.IOException;
-
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +12,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,13 @@ public class AddServiceServlet extends HttpServlet{
 			res.sendRedirect("logIn");
 			return;
 		}
+		List<Service> servicesList = new ArrayList<Service>();
+		try {
+			servicesList = new DBHandler().SQLServiceDB.retrieveAll();
+		} catch (SQLException | NamingException e) {
+			e.printStackTrace();
+		}
+		req.setAttribute("servicesList", servicesList);
 		req.setAttribute( "person", person );
 		req.getRequestDispatcher("/pages/addService.jsp").forward(req, res);
 	}
@@ -41,7 +49,6 @@ public class AddServiceServlet extends HttpServlet{
 	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		String title = req.getParameter("title");
 		String description = req.getParameter("description");
 		int status = Integer.parseInt(req.getParameter("status"));
 		String limitDateString = req.getParameter("limitDate");
@@ -55,17 +62,32 @@ public class AddServiceServlet extends HttpServlet{
 		}
 		
 		// Create service
-		Service service = new Service(title);
+		String serviceTitle = "";
+		Service service = null;
+		int nbService = Integer.parseInt(req.getParameter("title"));
+		if(nbService == 0) {
+			serviceTitle = req.getParameter("addServiceTitle");
+			service = new Service(serviceTitle);
+			try {
+				// Insert service into DB
+				 int idService = new DBHandler().SQLServiceDB.create(service);
+				 service.setId(idService);
+			} catch (Exception e) {
+	            this.terminate(req,res,"Erreur d'insertion dans la base ("+e+").");
+	            e.printStackTrace();
+	            return;
+	        }
+		}else {
+			int serviceId = Integer.parseInt(req.getParameter("title"));
+			try {
+				service = new DBHandler().SQLServiceDB.retrieve(serviceId);
+				 res.sendRedirect("http://yahoo.fr");
+				 return;
+			} catch (SQLException | NamingException e) {
+				e.printStackTrace();
+			}
+		}
 		
-		try {
-			// Insert service into DB
-			 int idService = new DBHandler().SQLServiceDB.create(service);
-			 service.setId(idService);
-		} catch (Exception e) {
-            this.terminate(req,res,"Erreur d'insertion dans la base ("+e+").");
-            e.printStackTrace();
-            return;
-        }
 		
 		HttpSession session = req.getSession();
 		Person person = (Person) session.getAttribute("person");
