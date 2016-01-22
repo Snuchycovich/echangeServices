@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <jsp:include page="/fragments/header.jsp" />
 
@@ -10,7 +11,7 @@
 		<h2>Demandes</h2>
 		<ul>
 			<c:forEach var="service" items="${listeServicesDemandes}">
-				<li>${service.title}</li>
+				<li>${service.title} <a href="#">(demander un cycle de service)</a></li>
 			</c:forEach>
 		</ul>
 	</div>
@@ -18,7 +19,7 @@
 		<h2>Offres</h2>
 		<ul>
 			<c:forEach var="service" items="${listeServicesOffres}">
-				<li>${service.title}</li>
+				<li>${service.title} <a href="#">(demander un cycle de service)</a></li>
 			</c:forEach>
 		</ul>
 	</div>

@@ -21,8 +21,12 @@ public class EspaceServlet extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		Person person = (Person) session.getAttribute( "person" );
-		List<PersonServiceAssociation> servicesPerson = null;
+		if(person == null) {
+			resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath()+"/home"));
+			return;
+		}
 		
+		List<PersonServiceAssociation> servicesPerson = null;
 		
 		try {
 			servicesPerson = new DBHandler().SQLPersonServiceDB.retrieveAllByPerson(person);
@@ -51,6 +55,15 @@ public class EspaceServlet extends HttpServlet{
 		req.setAttribute("listeServicesDemandes", servicesDemandes);
 		req.setAttribute("listeServicesOffres", servicesOffres);
 		req.getRequestDispatcher("/pages/mon-espace.jsp").forward(req, resp);
+		
+		List<PersonServiceAssociation> listPsa = null;
+		try {
+			listPsa = new DBHandler().SQLPersonServiceDB.retrieveAll();
+			Algo algo = new Algo();
+			algo.run(person, service, psa);
+		} catch (SQLException | NamingException e) {
+			e.printStackTrace();
+		}
 		
 	}
 }

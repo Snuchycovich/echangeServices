@@ -51,7 +51,6 @@ public class AddServiceServlet extends HttpServlet{
 		try {
 			limitDate = df.parse(limitDateString);
 		} catch (ParseException e1) {
-			res.sendRedirect("http://www.google.fr");
 			e1.printStackTrace();
 		}
 		
