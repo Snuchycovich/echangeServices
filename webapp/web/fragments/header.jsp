@@ -39,7 +39,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-	
+
 					<c:choose>
 						<c:when test="${person == null}">
 							<li class="page-scroll">
@@ -48,7 +48,7 @@
 							<li class="page-scroll">
 								<a href="logIn">Connexion</a>
 							</li>
-						</c:when>    
+						</c:when>
 						<c:otherwise>
 							<li class="page-scroll">
 								<a href="mon-espace">Mon espace</a>
@@ -58,9 +58,9 @@
 							</li>
 						</c:otherwise>
 					</c:choose>
-                    
+
                     <li class="page-scroll">
-                        <a href="addService">Rechercher un Service</a>
+                        <a href="addService">Ajouter un Service</a>
                     </li>
                 </ul>
             </div>
