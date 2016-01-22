@@ -23,6 +23,7 @@ public class EspaceServlet extends HttpServlet{
 		Person person = (Person) session.getAttribute( "person" );
 		List<PersonServiceAssociation> servicesPerson = null;
 		
+		
 		try {
 			servicesPerson = new DBHandler().SQLPersonServiceDB.retrieveAllByPerson(person);
 		} catch (SQLException | NamingException e) {
@@ -46,7 +47,7 @@ public class EspaceServlet extends HttpServlet{
 			else
 				servicesOffres.add(s);
 		}
-		
+	
 		req.setAttribute("listeServicesDemandes", servicesDemandes);
 		req.setAttribute("listeServicesOffres", servicesOffres);
 		req.getRequestDispatcher("/pages/mon-espace.jsp").forward(req, resp);

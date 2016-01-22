@@ -40,6 +40,7 @@ public class SignInServlet extends HttpServlet {
         }
         // Everything went well
         this.terminate(req,res,"Votre inscription s'est déroulée avec succès, merci.");
+        //res.sendRedirect("logIn");
   	}
 	
 	/**
@@ -49,6 +50,7 @@ public class SignInServlet extends HttpServlet {
      * @param message The message to be forwarded to table of contents
      */
     protected void terminate(HttpServletRequest req, HttpServletResponse res, String message) throws ServletException, IOException {
-        res.sendRedirect(res.encodeRedirectURL(req.getContextPath()+"/index.jsp?message="+message));
+        //res.sendRedirect(res.encodeRedirectURL(req.getContextPath()+"/index.jsp?message="+message));
+        res.sendRedirect("logIn");
     }
 }
