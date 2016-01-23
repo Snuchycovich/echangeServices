@@ -19,30 +19,30 @@ public class HomeServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 	        throws ServletException, IOException {
 		
-		List<PersonServiceAssociation> servicesPerson = null;
-		
+		List<PSCompleteInfo> psCompleteInfo = null;
 		try {
-			servicesPerson = new DBHandler().SQLPersonServiceDB.retrieveAll();
+			psCompleteInfo = new DBHandler().SQLPSCompleteInfoDB.retrieveAll();
 		} catch (SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		List<Service> servicesDemandes = new ArrayList<Service>();
-		List<Service> servicesOffres = new ArrayList<Service>();
+		List<PSCompleteInfo> servicesDemandes = new ArrayList<PSCompleteInfo>();
+		List<PSCompleteInfo> servicesOffres = new ArrayList<PSCompleteInfo>();
 		
-		for (PersonServiceAssociation psa : servicesPerson) {
-			Service s = null;
-			try {
-				s = new DBHandler().SQLServiceDB.retrieve(psa.getIdService());
-			} catch (SQLException | NamingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if( psa.getStatus() == 0 )
-				servicesDemandes.add(s);
-			else
-				servicesOffres.add(s);
+		for (PSCompleteInfo pscInfo : psCompleteInfo) {
+			int indexDem = 0, indexOf = 0;
+			if( pscInfo.getStatus() == 0 ) {
+				if (indexDem < 3){
+					servicesDemandes.add(pscInfo);
+					indexDem++;
+				}
+		    } else {
+		    	if (indexOf < 3) {
+		    		servicesOffres.add(pscInfo);
+		    		indexOf++;
+		    	}
+		    }
 		}
 		req.setAttribute("listeServicesDemandes", servicesDemandes);
 		req.setAttribute("listeServicesOffres", servicesOffres);

@@ -2,7 +2,7 @@ package webapp;
 
 import java.sql.Connection;
 
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -144,7 +144,7 @@ public class SQLPersonServiceDB {
         }
         return res;
     }
-	
+    
 	/**
      * Drops the table from the database. Nothing occurs if the table does not exist.
      * @throws SQLException if a database access error occurs

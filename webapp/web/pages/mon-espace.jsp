@@ -17,6 +17,12 @@
         			<c:forEach var="service" items="${listeServicesDemandes}">
                 <div class="serviceContainer">
         				<h5>${service.title}</h5>
+                <p>
+                  ${service.description}
+                </p>
+                <p>Date limite :
+                  ${service.limitDate}
+                </p>
                 <a href="#">(demander un cycle de service)</a>
                 </div>
         			</c:forEach>
@@ -26,6 +32,12 @@
               <c:forEach var="service" items="${listeServicesOffres}">
                 <div class="serviceContainer">
                 <h5>${service.title}</h5>
+                <p>
+                  ${service.description}
+                </p>
+                <p>Date limite :
+                  ${service.limitDate}
+                </p>
                 <a href="#">(demander un cycle de service)</a>
               </div>
               </c:forEach>

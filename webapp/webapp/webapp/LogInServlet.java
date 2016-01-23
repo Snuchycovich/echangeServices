@@ -33,8 +33,8 @@ public class LogInServlet extends HttpServlet {
 				 
 				 HttpSession session = req.getSession();
 				 session.setAttribute("person", person);
-				 
-				 resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath()+"/index.jsp?message=Connexion OK"));
+				 resp.sendRedirect("mon-espace");
+				 //resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath()+"/index.jsp?message=Connexion OK"));
 				 
 			 } else {
 				 //resp.sendRedirect("http://www.unicaen.fr");

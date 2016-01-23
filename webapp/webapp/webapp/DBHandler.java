@@ -27,13 +27,15 @@ public class DBHandler {
     /** The unique instance of class SQLServicePersonDB (null if none). */
     public static SQLPersonServiceDB SQLPersonServiceDB;
     
+    public static SQLPSCompleteInfoDB SQLPSCompleteInfoDB;
+    
     /**
      * Builds a new instance, using the strings used in the environment.
      * @throws NamingException if strings host, database, username, password, or table cannot be found
      * @throws SQLException if any problem occurs for accessing the database
      */
     public DBHandler () throws NamingException, SQLException {
-        if (DBHandler.SQLServiceDB==null || DBHandler.SQLPersonDB==null || DBHandler.SQLPersonServiceDB==null) {
+        if (DBHandler.SQLServiceDB==null || DBHandler.SQLPersonDB==null || DBHandler.SQLPersonServiceDB==null || DBHandler.SQLPSCompleteInfoDB==null) {
         	DBHandler.initialize();
         }
     }
@@ -72,6 +74,8 @@ public class DBHandler {
         
         SQLPersonServiceDB = new SQLPersonServiceDB(DBHandler.getLink(host,database,username,password), "personService");
         SQLPersonServiceDB.createTables();
+        
+        SQLPSCompleteInfoDB = new SQLPSCompleteInfoDB(DBHandler.getLink(host,database,username,password));
     }
     
     /**

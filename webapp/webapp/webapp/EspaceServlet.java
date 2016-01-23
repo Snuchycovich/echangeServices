@@ -26,30 +26,23 @@ public class EspaceServlet extends HttpServlet{
 			return;
 		}
 		
-		List<PersonServiceAssociation> servicesPerson = null;
-		
+		List<PSCompleteInfo> psCompleteInfo = null;
 		try {
-			servicesPerson = new DBHandler().SQLPersonServiceDB.retrieveAllByPerson(person);
+			psCompleteInfo = new DBHandler().SQLPSCompleteInfoDB.retrieveAll();
 		} catch (SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		List<Service> servicesDemandes = new ArrayList<Service>();
-		List<Service> servicesOffres = new ArrayList<Service>();
+		List<PSCompleteInfo> servicesDemandes = new ArrayList<PSCompleteInfo>();
+		List<PSCompleteInfo> servicesOffres = new ArrayList<PSCompleteInfo>();
 		
-		for (PersonServiceAssociation psa : servicesPerson) {
-			Service s = null;
-			try {
-				s = new DBHandler().SQLServiceDB.retrieve(psa.getIdService());
-			} catch (SQLException | NamingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if( psa.getStatus() == 0 )
-				servicesDemandes.add(s);
+		for (PSCompleteInfo psCInfo : psCompleteInfo) {
+			
+			if( psCInfo.getStatus() == 0 )
+				servicesDemandes.add(psCInfo);
 			else
-				servicesOffres.add(s);
+				servicesOffres.add(psCInfo);
 		}
 	
 		req.setAttribute("listeServicesDemandes", servicesDemandes);

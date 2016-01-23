@@ -7,10 +7,10 @@
         <div class="col-lg-12">
           <div class="row">
             <div class="col-lg-4 col-lg-offset-2">
-              <img class="img-responsive" src="img/profile.png" alt="">
+              <img class="img-responsive" src="img/profile.png" alt="Image perfil">
             </div>
             <div class="col-lg-4">
-              <img class="img-responsive" src="img/profile.png" alt="">
+              <img class="img-responsive" src="img/profile2.png" alt="Image perfil 2">
             </div>
 
           </div>
@@ -35,7 +35,10 @@
             <div class="row">
               <c:forEach var="service" items="${listeServicesDemandes}">
                 <div class="col-sm-4 serviceContainer">
-                    <h3>${service.title}</h3>
+                    <h3><a href="addService">${service.title}</a></h3>
+                    <p>${service.description}</p>
+                    <p>Date limite pour rendre ce service :${service.limitDate}</p>
+                    <p>Demandé par ${service.firstName}</p>
                 </div>
               </c:forEach>
             </div>
@@ -50,7 +53,10 @@
             <div class="row">
               <c:forEach var="service" items="${listeServicesOffres}">
                 <div class="col-sm-4 serviceContainer">
-                    <h3>${service.title}</h3>
+                  <h3><a href="addService">${service.title}</a></h3>
+                  <p>${service.description}</p>
+                  <p>Date limite pour profiter de ce service :${service.limitDate}</p>
+                  <p>Oferté par ${service.firstName}</p>
                 </div>
               </c:forEach>
             </div>
