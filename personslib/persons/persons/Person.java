@@ -5,10 +5,11 @@ import java.util.Date;
 /**
  * A class for representing persons, with a name, a first name, and an email address.
  * @author Charlotte Lecluze and Bruno Zanuttini, Universit&eacute; de Caen Basse-Normandie, France
- * @since January, 2013
+ * @since January, 2016
  */
 public class Person {
 	
+	/** The person's id */
 	protected int id;
 
     /** The person's name. */
@@ -22,7 +23,10 @@ public class Person {
     
     /** The person's subscription date. */
     protected Date subscriptionDate;
-
+    
+    /** The person's role. */
+    protected int role;
+    
     /**
      * Builds a new person.
      * @param name The person's name
@@ -34,6 +38,7 @@ public class Person {
         this.firstName=firstName;
         this.email=email;
         this.subscriptionDate = new Date();
+        this.role = 1;
     }
     
     /**
@@ -110,5 +115,15 @@ public class Person {
     public String toString () {
         return "person "+this.firstName+" "+this.name+" (email "+this.email+")";
     }
+    /**
+     * Returns the person's role
+     * @return the person's role 1 Public 0 Admin
+     */
+	public int getRole() {
+		return role;
+	}
 
+    public void setRole(int role) {
+    	this.role = role;
+    }
 }

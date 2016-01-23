@@ -28,7 +28,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Derniers SERVICES demandés</h2>
+                    <h2>Dernières demandes</h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -46,7 +46,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Derniers SERVICES offertés</h2>
+                    <h2>Dernières offres</h2>
                     <hr class="star-primary">
                 </div>
             </div>

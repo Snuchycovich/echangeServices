@@ -38,7 +38,7 @@ public class SQLPersonDB implements IPersonDB{
 		this.table = table;
 		this.link = link;
 		String query = null;
-		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?,?,MD5(?),?)";
+		query = "INSERT INTO `" + this.table + "` VALUES(?,?,?,?,MD5(?),?,?)";
 		this.createStatement = this.link.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		query = "SELECT * FROM `"+ this.table + "` WHERE email=?";
 		this.retrieveStatement = this.link.prepareStatement(query);
@@ -69,6 +69,7 @@ public class SQLPersonDB implements IPersonDB{
         query+="email VARCHAR(100) NOT NULL, ";
         query+="password TEXT NOT NULL, ";
         query+="inscriptionDate DATETIME, ";
+        query+="role int(11), ";
         query+="PRIMARY KEY (id) ";
         query+=")";
         // System.out.println(query);
@@ -94,6 +95,7 @@ public class SQLPersonDB implements IPersonDB{
         java.sql.Timestamp subscriptionDateSQL = new java.sql.Timestamp(person.getSubscriptionDate().getTime());
         this.createStatement.setTimestamp(6, subscriptionDateSQL);
         
+        this.createStatement.setInt(7,person.getRole());
         return this.createStatement.executeUpdate();
     }
 

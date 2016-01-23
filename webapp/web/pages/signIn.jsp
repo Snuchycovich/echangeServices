@@ -15,7 +15,10 @@
         </div>
         <div class="form-group">
             <label for="">Email:</label>
-            <input type="text" name="email" class="form-control">
+            <div class="input-group">
+              <span class="input-group-addon">@</span>
+              <input type="text" name="email" class="form-control">
+            </div>
         </div>
         <div class="form-group">
             <label for="">Password:</label>
