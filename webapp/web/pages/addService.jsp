@@ -6,13 +6,13 @@
   <div class="container">
     <div class="section">
       <h1>Ajout d'un service</h1>
-      <form action="addService" method="post" class="form">
+      <form action="service/add" method="post" class="form">
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="serviceTitle">Selectionner un service</label>
+              <label for="serviceTitle">Selectionnez un service</label>
               <select class="form-control" name="title" id="serviceTitle">
-                <option value="0">Sélectionnez un service</option>
+                <option value="0"></option>
               <c:forEach var="service" items="${servicesList}">
                 <option value="${service.id}">${service.title}</option>
               </c:forEach>
@@ -44,8 +44,8 @@
           <div class="col-lg-4">
             <div  class="form-group">
               <div class="input-group date">
-                <label for="limitdate">Date limit pour offir ou recevoir le Service</label>
-                <input type="text" class="form-control" name="limitDate" id="limitdate"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                <label for="limitdate">Date limite pour offrir ou recevoir le service</label>
+                <input type="text" class="form-control" name="limitDate" id="limitdate">
               </div>
             </div>
           </div>

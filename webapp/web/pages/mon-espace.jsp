@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="/fragments/header.jsp" />
 
@@ -20,10 +21,10 @@
                 <p>
                   ${service.description}
                 </p>
-                <p>Date limite :
-                  ${service.limitDate}
+                <p>
+					Date limite : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
                 </p>
-                <a href="#">(demander un cycle de service)</a>
+                <a href="mon-espace/cycle/service&id=${service.id}">(demander un cycle de service)</a>
                 </div>
         			</c:forEach>
         	</div>
@@ -35,10 +36,10 @@
                 <p>
                   ${service.description}
                 </p>
-                <p>Date limite :
-                  ${service.limitDate}
+                <p>
+					Date limite : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
                 </p>
-                <a href="#">(demander un cycle de service)</a>
+                <a href="mon-espace/cycle/service&id=${service.id}">(demander un cycle de service)</a>
               </div>
               </c:forEach>
           </div>

@@ -22,8 +22,6 @@ import javax.servlet.http.HttpSession;
 import persons.Person;
 import services.Service;
 
-
-
 public class AddServiceServlet extends HttpServlet{
 	
 	@Override
@@ -31,7 +29,7 @@ public class AddServiceServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 		Person person = (Person) session.getAttribute( "person" );
 		if (person == null) {
-			res.sendRedirect("logIn");
+			res.sendRedirect(req.getContextPath()+"/logIn");
 			return;
 		}
 		List<Service> servicesList = new ArrayList<Service>();
@@ -73,7 +71,7 @@ public class AddServiceServlet extends HttpServlet{
 				 int idService = new DBHandler().SQLServiceDB.create(service);
 				 service.setId(idService);
 			} catch (Exception e) {
-	            this.terminate(req,res,"Erreur d'insertion dans la base ("+e+").");
+	            this.error(req,res);
 	            e.printStackTrace();
 	            return;
 	        }
@@ -81,8 +79,6 @@ public class AddServiceServlet extends HttpServlet{
 			int serviceId = Integer.parseInt(req.getParameter("title"));
 			try {
 				service = new DBHandler().SQLServiceDB.retrieve(serviceId);
-				 res.sendRedirect("http://yahoo.fr");
-				 return;
 			} catch (SQLException | NamingException e) {
 				e.printStackTrace();
 			}
@@ -98,31 +94,30 @@ public class AddServiceServlet extends HttpServlet{
 		try {
 			 new DBHandler().SQLPersonServiceDB.create(servicePersonAssociation);
         } catch (Exception e) {
-            this.terminate(req,res,"Erreur d'insertion dans la base ("+e+").");
+            this.error(req,res);
             e.printStackTrace();
             return;
         }
 		
         // Everything went well
-        this.terminate(req,res,"Nous avons bien pris en compte le nouveau service merci.");
+        this.success(req,res);
 	}
 	
 	/**
-     * Terminates the response of this servlet by displaying table of contents and a message.
+     * Terminates the response of this servlet by redirecting the user to a success page.
      * @param request The request for this call
      * @param response The response for this call
-     * @param message The message to be forwarded to table of contents
      */
-    protected void terminate(HttpServletRequest req, HttpServletResponse res, String message) throws ServletException, IOException {
-        res.sendRedirect(res.encodeRedirectURL(req.getContextPath()+"/index.jsp?message="+message));
+    protected void success(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        res.sendRedirect(res.encodeRedirectURL(req.getContextPath()+"/service/add/complete"));
     }
     
-    @Override
-    public void destroy () {
-        try {
-        	DBHandler.close();
-        } catch (SQLException e) {
-            this.log("Erreur lors de la cl&ocirc;ture de la connexion SQL ("+e+").");
-       }
+    /**
+     * Terminates the response of this servlet by redirecting the user to an error page.
+     * @param request The request for this call
+     * @param response The response for this call
+     */
+    protected void error(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        res.sendRedirect(res.encodeRedirectURL(req.getContextPath()+"/service/add/error"));
     }
 }

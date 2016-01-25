@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="fragments/header.jsp" />
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <header>
   <div class="container">
     <div class="row">
@@ -37,7 +39,9 @@
                 <div class="col-sm-4 serviceContainer">
                     <h3><a href="addService">${service.title}</a></h3>
                     <p>${service.description}</p>
-                    <p>Date limite pour rendre ce service :${service.limitDate}</p>
+                    <p>
+						Date limite pour rendre ce service : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
+                    </p>
                     <p>Demandé par ${service.firstName}</p>
                 </div>
               </c:forEach>
@@ -55,8 +59,10 @@
                 <div class="col-sm-4 serviceContainer">
                   <h3><a href="addService">${service.title}</a></h3>
                   <p>${service.description}</p>
-                  <p>Date limite pour profiter de ce service :${service.limitDate}</p>
-                  <p>Oferté par ${service.firstName}</p>
+                  <p>
+					Date limite pour profiter de ce service : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
+                  </p>
+                  <p>Offert par ${service.firstName}</p>
                 </div>
               </c:forEach>
             </div>

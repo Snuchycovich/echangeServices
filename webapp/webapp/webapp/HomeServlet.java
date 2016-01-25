@@ -30,8 +30,8 @@ public class HomeServlet extends HttpServlet{
 		List<PSCompleteInfo> servicesDemandes = new ArrayList<PSCompleteInfo>();
 		List<PSCompleteInfo> servicesOffres = new ArrayList<PSCompleteInfo>();
 		
+		int indexDem = 0, indexOf = 0;
 		for (PSCompleteInfo pscInfo : psCompleteInfo) {
-			int indexDem = 0, indexOf = 0;
 			if( pscInfo.getStatus() == 0 ) {
 				if (indexDem < 3){
 					servicesDemandes.add(pscInfo);

@@ -60,7 +60,7 @@
 					</c:choose>
 
                     <li class="page-scroll">
-                        <a href="addService">Ajouter un Service</a>
+                        <a href="service/add">Ajouter un Service</a>
                     </li>
                 </ul>
             </div>

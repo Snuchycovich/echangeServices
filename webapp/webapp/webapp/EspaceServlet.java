@@ -49,14 +49,5 @@ public class EspaceServlet extends HttpServlet{
 		req.setAttribute("listeServicesOffres", servicesOffres);
 		req.getRequestDispatcher("/pages/mon-espace.jsp").forward(req, resp);
 		
-		/*List<PersonServiceAssociation> listPsa = null;
-		try {
-			listPsa = new DBHandler().SQLPersonServiceDB.retrieveAll();
-			Algo algo = new Algo();
-			algo.run(person, service, psa);
-		} catch (SQLException | NamingException e) {
-			e.printStackTrace();
-		}*/
-		
 	}
 }

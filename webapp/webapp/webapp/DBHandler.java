@@ -63,8 +63,8 @@ public class DBHandler {
         String host=initialContext.doLookup("java:comp/env/host");
         String database=initialContext.doLookup("java:comp/env/database");
         String username=initialContext.doLookup("java:comp/env/username");
-        String password=initialContext.doLookup("java:comp/env/password");
-        //String password="";
+        //String password=initialContext.doLookup("java:comp/env/password");
+        String password="";
         
         SQLServiceDB = new SQLServiceDB(DBHandler.getLink(host,database,username,password), "services");
         SQLServiceDB.createTables();
