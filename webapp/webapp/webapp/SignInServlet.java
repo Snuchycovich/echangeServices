@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import persons.*;
 
 public class SignInServlet extends HttpServlet {
-	
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 	        throws ServletException, IOException {
 		req.getRequestDispatcher("/pages/signIn.jsp").forward(req, res);
@@ -19,17 +19,17 @@ public class SignInServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
         throws ServletException, IOException {
-     
+
         res.setContentType("text/html;charset=UTF-8");
-        
+
         // Main operation
         String nom = req.getParameter("nom");
         String prenom = req.getParameter("prenom");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        
+
         Person p = new Person(nom, prenom, email);
-        
+
         try {
 			// Insert service into DB
 			 new DBHandler().SQLPersonDB.create(p, password);
@@ -42,7 +42,7 @@ public class SignInServlet extends HttpServlet {
         this.terminate(req,res,"Votre inscription s'est déroulée avec succès, merci.");
         //res.sendRedirect("logIn");
   	}
-	
+
 	/**
      * Terminates the response of this servlet by displaying table of contents and a message.
      * @param request The request for this call

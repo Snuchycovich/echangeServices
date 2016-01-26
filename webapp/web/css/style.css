@@ -74,7 +74,15 @@ footer .footer-below {
     padding: 25px 0;
     background-color: #233140;
 }
+
+
 /* */
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
 .serviceContainer{
   margin-bottom: 10px;
   padding:10px;

@@ -166,4 +166,16 @@ public class SQLPersonServiceDB {
         Statement statement=this.link.createStatement();
         statement.execute(query);
     }
+    
+    /**
+     * Deletes a Association Person - Service. Nothing occurs in case the service does not exist in the database.
+     * @param int id of the Person that has added the the service.
+     * @throws SQLException if a database access error occurs
+     */
+    
+    public void deletePersonService (int idPerson) throws SQLException {  
+        String query="DELETE FROM `"+this.table+"` WHERE idPerson="+idPerson+"";
+        Statement statement=this.link.createStatement();
+        statement.execute(query);
+    }
 }

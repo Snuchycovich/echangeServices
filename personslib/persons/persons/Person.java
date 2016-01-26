@@ -38,7 +38,6 @@ public class Person {
         this.firstName=firstName;
         this.email=email;
         this.subscriptionDate = new Date();
-        this.role = 1;
     }
     
     /**
@@ -47,13 +46,15 @@ public class Person {
      * @param name The person's name
      * @param firstName The person's first name
      * @param email The person's email address
+     * @param role The person's role
      */
-    public Person (int id, String name, String firstName, String email) {
+    public Person (int id, String name, String firstName, String email, int role) {
     	this.id = id;
         this.name=name;
         this.firstName=firstName;
         this.email=email;
         this.subscriptionDate = new Date();
+        this.role = role;
     }
     
     /**

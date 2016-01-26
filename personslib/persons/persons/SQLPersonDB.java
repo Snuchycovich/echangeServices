@@ -95,7 +95,7 @@ public class SQLPersonDB implements IPersonDB{
         java.sql.Timestamp subscriptionDateSQL = new java.sql.Timestamp(person.getSubscriptionDate().getTime());
         this.createStatement.setTimestamp(6, subscriptionDateSQL);
         
-        this.createStatement.setInt(7,person.getRole());
+        this.createStatement.setInt(7,1);
         return this.createStatement.executeUpdate();
     }
 
@@ -114,7 +114,7 @@ public class SQLPersonDB implements IPersonDB{
         List<Person> persons=new ArrayList<Person>();
         
         while (rs.next()) {
-        	persons.add(new Person(rs.getInt("id"), rs.getString("name"),rs.getString("firstName"),rs.getString("email")));
+        	persons.add(new Person(rs.getInt("id"), rs.getString("name"),rs.getString("firstName"),rs.getString("email"), rs.getInt("role")));
         }
        
         return persons;
@@ -169,7 +169,7 @@ public class SQLPersonDB implements IPersonDB{
         if (!rs.next()) {
             return null;
         }
-        return new Person(rs.getInt("id"), rs.getString("name"),rs.getString("firstName"),rs.getString("email"));
+        return new Person(rs.getInt("id"), rs.getString("name"),rs.getString("firstName"),rs.getString("email"),rs.getInt("role"));
     }
 
 	@Override

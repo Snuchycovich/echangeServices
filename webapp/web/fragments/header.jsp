@@ -39,33 +39,32 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-									<c:choose>
-										<c:when test="${person != null}">
-											<li class="page-scroll">
-													<a href="admin"><< Admin >></a>
-											</li>
-										</c:when>
-									</c:choose>
+
+									<c:if test="${person.role == 0}">
+										<li>
+												<a href="admin" class="btnAdmin"><< Admin >></a>
+										</li>
+									</c:if>
 									<c:choose>
 										<c:when test="${person == null}">
-											<li class="page-scroll">
+											<li>
 												<a href="signIn">Inscription</a>
 											</li>
-											<li class="page-scroll">
+											<li>
 												<a href="logIn">Connexion</a>
 											</li>
 										</c:when>
 										<c:otherwise>
-											<li class="page-scroll">
+											<li>
 												<a href="mon-espace">Mon espace</a>
 											</li>
-											<li class="page-scroll">
+											<li>
 												<a href="logOut">Déconnexion</a>
 											</li>
 										</c:otherwise>
 									</c:choose>
 
-                    <li class="page-scroll">
+                    <li>
                         <a href="service/add">Ajouter un Service</a>
                     </li>
                 </ul>

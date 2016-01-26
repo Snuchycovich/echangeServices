@@ -15,23 +15,23 @@
         <div class="row">
           <div class="col-lg-6" id="demandes">
         		<h2 class="text-center">Demandes</h2>
-				<c:forEach var="service" items="${listeServicesDemandes}">
-					<div class="serviceContainer">
-						<h5>${service.title}</h5>
-						<p>
-						  ${service.description}
-						</p>
-						<p>
-							Date limite : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
-						</p>
-						<a href="mon-espace/cycle/service?id=${service.id}">(demander un cycle de service)</a>
-					</div>
-				</c:forEach>
+        			<c:forEach var="service" items="${listeServicesDemandes}">
+                <div class="serviceContainer demande">
+        				<h5>${service.title}</h5>
+                <p>
+                  ${service.description}
+                </p>
+                <p>
+					Date limite : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
+                </p>
+                <a href="mon-espace/cycle/service&id=${service.id}">(demander un cycle de service)</a>
+                </div>
+        			</c:forEach>
         	</div>
           <div class="col-lg-6" id="offres">
             <h2 class="text-center">Offres</h2>
               <c:forEach var="service" items="${listeServicesOffres}">
-                <div class="serviceContainer">
+                <div class="serviceContainer offre">
                 <h5>${service.title}</h5>
                 <p>
                   ${service.description}
