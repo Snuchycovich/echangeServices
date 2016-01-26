@@ -113,7 +113,7 @@ public class Person {
      * @return A representation of this person as a string
      */
     public String toString () {
-        return "person "+this.firstName+" "+this.name+" (email "+this.email+")";
+        return "\""+this.firstName+" "+this.name+"\"";
     }
     /**
      * Returns the person's role
@@ -125,5 +125,17 @@ public class Person {
 
     public void setRole(int role) {
     	this.role = role;
+    }
+    
+    public int hashCode(){
+        return id;
+    }
+    
+    public boolean equals(Object o) {
+	    if(o == null) return false;
+	    if( !(o instanceof Person) ) return false;
+	
+	    Person other = (Person) o;
+	    return id == other.id;
     }
 }

@@ -38,11 +38,12 @@ public class EspaceServlet extends HttpServlet{
 		List<PSCompleteInfo> servicesOffres = new ArrayList<PSCompleteInfo>();
 		
 		for (PSCompleteInfo psCInfo : psCompleteInfo) {
-			
-			if( psCInfo.getStatus() == 0 )
-				servicesDemandes.add(psCInfo);
-			else
-				servicesOffres.add(psCInfo);
+			if(person.getEmail().equals(psCInfo.getEmail())) {
+				if( psCInfo.getStatus() == 0 )
+					servicesDemandes.add(psCInfo);
+				else
+					servicesOffres.add(psCInfo);
+			}
 		}
 	
 		req.setAttribute("listeServicesDemandes", servicesDemandes);

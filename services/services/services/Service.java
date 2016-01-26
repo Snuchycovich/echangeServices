@@ -1,7 +1,5 @@
 package services;
 
-import java.util.Date;
-
 
 /**
  * 
@@ -64,7 +62,15 @@ public class Service {
 
 	@Override
 	public String toString() {
-		return "Service [id=" + id + ", title=" + title+"]";
+		return "\""+title+"\"";
 	}
+	
+	public boolean equals(Object o) {
+	    if(o == null) return false;
+	    if( !(o instanceof Service) ) return false;
+	
+	    Service other = (Service) o;
+	    return id == other.id;
+    }
 
 }

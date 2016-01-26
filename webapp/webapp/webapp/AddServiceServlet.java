@@ -36,7 +36,7 @@ public class AddServiceServlet extends HttpServlet{
 		try {
 			servicesList = new DBHandler().SQLServiceDB.retrieveAll();
 		} catch (SQLException | NamingException e) {
-			e.printStackTrace();
+			this.error(req,res);
 		}
 		req.setAttribute("servicesList", servicesList);
 		req.setAttribute( "person", person );
@@ -47,6 +47,8 @@ public class AddServiceServlet extends HttpServlet{
 	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
+		req.setCharacterEncoding("UTF-8");
+		
 		String description = req.getParameter("description");
 		int status = Integer.parseInt(req.getParameter("status"));
 		String limitDateString = req.getParameter("limitDate");
@@ -56,13 +58,15 @@ public class AddServiceServlet extends HttpServlet{
 		try {
 			limitDate = df.parse(limitDateString);
 		} catch (ParseException e1) {
-			e1.printStackTrace();
+			this.error(req,res);
 		}
 		
 		// Create service
 		String serviceTitle = "";
 		Service service = null;
 		int nbService = Integer.parseInt(req.getParameter("title"));
+		
+		// If the service does not already exist
 		if(nbService == 0) {
 			serviceTitle = req.getParameter("addServiceTitle");
 			service = new Service(serviceTitle);
@@ -72,15 +76,14 @@ public class AddServiceServlet extends HttpServlet{
 				 service.setId(idService);
 			} catch (Exception e) {
 	            this.error(req,res);
-	            e.printStackTrace();
 	            return;
 	        }
-		}else {
+		} else {
 			int serviceId = Integer.parseInt(req.getParameter("title"));
 			try {
 				service = new DBHandler().SQLServiceDB.retrieve(serviceId);
 			} catch (SQLException | NamingException e) {
-				e.printStackTrace();
+				this.error(req,res);
 			}
 		}
 		
@@ -95,7 +98,6 @@ public class AddServiceServlet extends HttpServlet{
 			 new DBHandler().SQLPersonServiceDB.create(servicePersonAssociation);
         } catch (Exception e) {
             this.error(req,res);
-            e.printStackTrace();
             return;
         }
 		

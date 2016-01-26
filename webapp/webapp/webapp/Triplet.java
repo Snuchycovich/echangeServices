@@ -15,4 +15,12 @@ public class Triplet {
 		this.level = level;
 	}
 	
+	public Service getService() {
+		return service;
+	}
+	
+	public String toString() {
+		return "{"+person+","+service+", "+level+" }";
+	}
+	
 }
