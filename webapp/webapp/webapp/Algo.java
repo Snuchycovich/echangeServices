@@ -96,10 +96,10 @@ public class Algo {
         		res += "<b>"+p.getFirstName()+" "+p.getName()+"</b> -> (";
         		List<Triplet> triplets = closed.get(p);
         		for(Triplet t: triplets) {
-            			res += "<i>"+t+"</i> ";
+            			res += "<i>"+t+"</i>)";
             	}
         		if(count+1 < keys.size())
-        			res += ") , ";
+        			res += ", ";
         	}
         	count++;
         }

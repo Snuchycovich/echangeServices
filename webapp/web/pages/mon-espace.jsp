@@ -24,7 +24,7 @@
                 <p>
 					Date limite : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
                 </p>
-                <a href="mon-espace/cycle/service&id=${service.id}">(demander un cycle de service)</a>
+                <a href="mon-espace/cycle/service?id=${service.id}">(demander un cycle de service)</a>
                 </div>
         			</c:forEach>
         	</div>
