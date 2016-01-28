@@ -44,9 +44,6 @@
           </div>
         </div>
         </div>
-        <div class="col-lg-4">
-          <h2 class="text-center">Le Service pour moi<h2>
-        </div>
       </div>
     </div>
 </div>
