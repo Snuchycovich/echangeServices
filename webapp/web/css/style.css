@@ -83,8 +83,22 @@ footer .footer-below {
     vertical-align: middle;
     float: none;
 }
+.title-service-block {
+  color:#FFFFFF;
+  background-color: #233140;
+  border-radius: 5px 5px 0 0;
+}
 .serviceContainer{
   margin-bottom: 10px;
   padding:10px;
-  box-shadow: 5px 5px 5px #CCCCCC;
+  border-left: 5px solid #233140;
+  box-shadow: 1px 1px 5px #CCCCCC;
+}
+.service-title a{
+  font-size: 1.5em;
+}
+
+.service-title a:hover{
+  color: #233140;
+  text-decoration: none;
 }

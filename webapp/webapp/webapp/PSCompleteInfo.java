@@ -1,10 +1,16 @@
 package webapp;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author Julien Foucault- Universit&eacute; de Caen Basse-Normandie, France
+ * @author Emiliano Castillo - Universit&eacute; de Caen Basse-Normandie, France
+ * @since Janaury 2016
+ */
 public class PSCompleteInfo {
 	
-	private int id;
+	private int idPerson;
+	private int idService;
 	private String description;
 	private Date creationDate;
 	private Date limitDate;
@@ -17,8 +23,9 @@ public class PSCompleteInfo {
 	
 	
 	
-	public PSCompleteInfo(int id, String description, Date creationDate, Date limitDate, int status, String title, String name, String firstName, String email, Date inscriptionDate) {
-		this.id = id;
+	public PSCompleteInfo(int idPerson, int idService, String description, Date creationDate, Date limitDate, int status, String title, String name, String firstName, String email, Date inscriptionDate) {
+		this.idPerson = idPerson;
+		this.idService = idService;
 		this.description = description;
 		this.creationDate = creationDate;
 		this.limitDate = limitDate;
@@ -30,8 +37,12 @@ public class PSCompleteInfo {
 		this.inscriptionDate = inscriptionDate;
 	}
 
-	public int getId() {
-		return id;
+	public int getIdPerson() {
+		return idPerson;
+	}
+	
+	public int getIdService() {
+		return idService;
 	}
 
 	public String getDescription() {

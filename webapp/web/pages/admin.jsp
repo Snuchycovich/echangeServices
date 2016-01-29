@@ -68,8 +68,8 @@
           <c:forEach var="ps" items="${psa}">
             <div class="row">
               <div class="col-md-8">
-                <a data-toggle="modal" data-target="#ps-${ps.id}">${ps.firstName} ${ps.name} - ${ps.title}</a>
-                <div id="ps-${ps.id}" class="modal fade" role="dialog">
+                <a data-toggle="modal" data-target="#ps-${ps.idService}">${ps.firstName} ${ps.name} - ${ps.title}</a>
+                <div id="ps-${ps.idService}" class="modal fade" role="dialog">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">

@@ -156,19 +156,20 @@ public class SQLPersonServiceDB {
     }
 
     /**
-     * Deletes a service. Nothing occurs in case the service does not exist in the database.
-     * @param service The service
+     * Deletes a person - service association. Nothing occurs in case the service does not exist in the database.
+     * @param idPerson The person's id
+     * @param idService The service' id
      * @throws SQLException if a database access error occurs
      */
     
-    public void deleteAPersonService (Person person, Service service) throws SQLException {  
-        String query="DELETE FROM `"+this.table+"` WHERE idPerson="+person.getId()+" AND idService="+service.getId();
+    public void deletePersonService (int idPerson, int idService) throws SQLException {  
+        String query="DELETE FROM `"+this.table+"` WHERE idPerson="+idPerson+" AND idService="+idService;
         Statement statement=this.link.createStatement();
         statement.execute(query);
     }
     
     /**
-     * Deletes a Association Person - Service. Nothing occurs in case the service does not exist in the database.
+     * Deletes a Association Person - Service association. Nothing occurs in case the service does not exist in the database.
      * @param int id of the Person that has added the the service.
      * @throws SQLException if a database access error occurs
      */

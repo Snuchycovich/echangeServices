@@ -51,4 +51,21 @@ public class EspaceServlet extends HttpServlet{
 		req.getRequestDispatcher("/pages/mon-espace.jsp").forward(req, resp);
 		
 	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	        throws ServletException, IOException {
+		
+		String idPerson = req.getParameter("idPerson");
+		int personID = Integer.parseInt(idPerson);
+		String idService = req.getParameter("idService");
+		int serviceID = Integer.parseInt(idService);
+		
+		try {
+			new DBHandler().SQLPersonServiceDB.deletePersonService(personID, serviceID);
+		} catch (SQLException | NamingException e) {
+		
+		}
+		resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath()+"/mon-espace"));
+	}
+
 }

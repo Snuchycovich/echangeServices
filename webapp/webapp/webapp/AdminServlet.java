@@ -89,35 +89,7 @@ public class AdminServlet extends HttpServlet{
 			}
 		}
 		
-		
-		List<Person> persons = null;
-		
-		try {
-			persons = (List<Person>) new DBHandler().SQLPersonDB.retrieveAll();
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		List<Service> services = null;
-		try {
-			services = (List<Service>) new DBHandler().SQLServiceDB.retrieveAll();
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		List<PSCompleteInfo> psCInf = null;
-		try {
-			psCInf = (List<PSCompleteInfo>) new DBHandler().SQLPSCompleteInfoDB.retrieveAll();
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		req.setAttribute("psa", psCInf);
-		req.setAttribute("services", services);
-		req.setAttribute("persons", persons);
-		req.getRequestDispatcher("/pages/admin.jsp").forward(req, res);
+		res.sendRedirect(res.encodeRedirectURL(req.getContextPath()+"/admin"));
 	}
 
 }

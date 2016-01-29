@@ -5,7 +5,7 @@ package services;
  * 
  * @author Julien Foucault- Universit&eacute; de Caen Basse-Normandie, France
  * @author Emiliano Castillo - Universit&eacute; de Caen Basse-Normandie, France
- * @since Novembre 2015
+ * @since Janaury 2016
  */
 public class Service {
 	

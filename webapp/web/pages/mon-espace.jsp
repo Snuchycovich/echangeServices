@@ -6,45 +6,98 @@
 
 <div class="page">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-8">
+
         <div class="row">
           <h1>Mon espace</h1>
-          <p>Bonjour ${person.firstName}, voici la liste des offres vous concernant : </p>
+          <p>Bonjour <strong>${person.firstName}</strong>, voici la liste des offres vous concernant : </p>
         </div>
         <div class="row">
+          <!--Liste demande de services-->
           <div class="col-lg-6" id="demandes">
-        		<h2 class="text-center">Demandes</h2>
+        		<h2 class="text-center title-service-block">Demandes</h2>
         			<c:forEach var="service" items="${listeServicesDemandes}">
                 <div class="serviceContainer demande">
-        				<h5>${service.title}</h5>
-                <p>
-                  ${service.description}
-                </p>
-                <p>
-					Date limite : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
-                </p>
-                <a href="mon-espace/cycle/service?id=${service.id}">(demander un cycle de service)</a>
+                  <div class="row">
+                    <form method="post">
+                      <div class="col-md-8">
+                        <div class="service-title"><a data-toggle="modal" data-target="#${service.idService}">${service.title}</a></div>
+                      </div>
+                      <div class="col-md-2">
+                        <a class="btn btn-default" href="mon-espace/cycle/service?id=${service.idService}" title="Rechercher le service qui me correspond">CYCLE</a>
+                      </div>
+                      <div class="col-md-2">
+                        <button type="submit" class="btn btn-default" title="Supprimer"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                      </div>
+                      <input type="hidden" name="idPerson" value="${service.idPerson}">
+                      <input type="hidden" name="idService" value="${service.idService}">
+                    </form>
+                  </div>
+                  <!-- Modal-->
+                  <div id="${service.idService}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h2>${service.title}</h2>
+                        </div>
+                        <div class="modal-body">
+                          <p><strong>Description:</strong><br> ${service.description}</p>
+                          <p>
+          					          Date limite : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
+                          </p>
+                        </div>
+                        <div class="modal-footer">
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                       </div>
+                      </div>
+                    </div>
+                  </div><!-- End Modal-->
                 </div>
         			</c:forEach>
         	</div>
+
+          <!--Liste demande de services-->
           <div class="col-lg-6" id="offres">
-            <h2 class="text-center">Offres</h2>
+            <h2 class="text-center title-service-block">Offres</h2>
               <c:forEach var="service" items="${listeServicesOffres}">
                 <div class="serviceContainer offre">
-                <h5>${service.title}</h5>
-                <p>
-                  ${service.description}
-                </p>
-                <p>
-					Date limite : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
-                </p>
+                  <div class="row">
+                    <form method="post">
+                      <div class="col-md-10">
+                          <div class="service-title"><a data-toggle="modal" data-target="#${service.idService}">${service.title}</a></div>
+                      </div>
+                      <div class="col-md-2">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                      </div>
+                      <input type="hidden" name="idPerson" value="${service.idPerson}">
+                      <input type="hidden" name="idService" value="${service.idService}">
+                    </form>
+                  </div>
+                  <!-- Modal-->
+                  <div id="${service.idService}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h2>${service.title}</h2>
+                        </div>
+                        <div class="modal-body">
+                          <p><strong>Description:</strong><br> ${service.description}</p>
+                          <p>
+          					          Date limite : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
+                          </p>
+                        </div>
+                        <div class="modal-footer">
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                       </div>
+                      </div>
+                    </div>
+                  </div><!-- End Modal-->
               </div>
               </c:forEach>
           </div>
         </div>
-        </div>
-      </div>
+
     </div>
 </div>
 

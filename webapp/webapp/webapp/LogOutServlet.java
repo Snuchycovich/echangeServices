@@ -19,7 +19,7 @@ public class LogOutServlet extends HttpServlet {
 			Person person = (Person) session.getAttribute( "person" );
 			if (person != null) {
 				session.invalidate();
-				resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath()+"/index.jsp"));
+				resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath()+"/home"));
 				return;
 			}
 	}

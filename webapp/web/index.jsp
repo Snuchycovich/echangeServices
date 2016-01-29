@@ -37,7 +37,7 @@
             <div class="row">
               <c:forEach var="service" items="${listeServicesDemandes}">
                 <div class="col-sm-4 serviceContainer">
-                    <h3><a href="addService">${service.title}</a></h3>
+                    <h3><a href="service/add">${service.title}</a></h3>
                     <p>${service.description}</p>
                     <p>
 						Date limite pour rendre ce service : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
@@ -57,7 +57,7 @@
             <div class="row">
               <c:forEach var="service" items="${listeServicesOffres}">
                 <div class="col-sm-4 serviceContainer">
-                  <h3><a href="addService">${service.title}</a></h3>
+                  <h3><a href="service/add">${service.title}</a></h3>
                   <p>${service.description}</p>
                   <p>
 					Date limite pour profiter de ce service : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
@@ -67,6 +67,8 @@
               </c:forEach>
             </div>
         </div>
+    </section>
+    <section>
     </section>
 
 <jsp:include page="fragments/footer.html" />
