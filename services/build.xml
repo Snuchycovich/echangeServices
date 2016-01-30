@@ -7,7 +7,7 @@
 	</fileset>
 </path>
 
-<target name="compile" depends="init">				
+<target name="compile" depends="init">
   <javac srcdir="." destdir="build" includeantruntime="false" debug="true" debuglevel="vars,lines,source">
     <include name="services/**/*.java"/>
     <classpath refid="external"/>
@@ -15,7 +15,7 @@
 </target>
 
 <target name="dist" depends="init,compile">
-  <jar basedir="build" excludes="test/**" destfile="dist/services.jar" />
+  <jar basedir="build" excludes="tests/**" destfile="dist/services.jar" />
 </target>
 
 <target name="doc" depends="init,compile">
@@ -24,19 +24,25 @@
 
 <target name="compiletests" depends="compile">
   <javac srcdir="." destdir="build" classpath="build:lib/mysql-connector.jar" includeantruntime="false">
-    <include name="test/**/*.java" />
+    <include name="tests/**/*.java" />
   </javac>
 </target>
 
 <target name="test" depends="compiletests">
-  <java fork="yes" classname="test.TestSQLServiceDB" classpath="build:lib/mysql-connector.jar">
-  	<jvmarg value="-ea" />
-  	    <arg value="${host}" />
-  	    <arg value="${database}" />
-  	    <arg value="${username}" />
-  	    <arg value="${password}" />
-  </java>
+  <java fork="yes" classname="tests.TestSQLServiceDB" classpath="build:lib/mysql-connector.jar">
+		<jvmarg value="-ea" />
+				<arg value="${host}" />
+				<arg value="${database}" />
+				<arg value="${user}" />
+				<arg value="${password}" />
+	</java>
 </target>
+
+<!-- <target name="test" depends="compiletests">
+  <java fork="yes" classname="tests.TestServiceDBStub" classpath="build">
+    <jvmarg value="-ea" />
+  </java>
+</target>-->
 
 <target name="init">
   <mkdir dir="build" />

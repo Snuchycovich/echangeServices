@@ -2,6 +2,50 @@
     padding-top: 100px;
     padding-bottom: 50px;
 }
+
+hr.star-light,
+hr.star-primary {
+    margin: 25px auto 30px;
+    padding: 0;
+    max-width: 250px;
+    border: 0;
+    border-top: solid 5px;
+    text-align: center;
+}
+
+hr.star-light:after,
+hr.star-primary:after {
+    content: "\f005";
+    display: inline-block;
+    position: relative;
+    top: -.8em;
+    padding: 0 .25em;
+    font-family: FontAwesome;
+    font-size: 2em;
+}
+
+hr.star-light {
+    border-color: #fff;
+}
+
+hr.star-light:after {
+    color: #fff;
+    background-color: #18bc9c;
+}
+
+hr.star-primary {
+    border-color: #2c3e50;
+}
+
+hr.star-primary:after {
+    color: #2c3e50;
+    background-color: #fff;
+}
+
+.img-centered {
+    margin: 0 auto;
+}
+
 header {
     text-align: center;
     color: #fff;
@@ -77,12 +121,27 @@ footer .footer-below {
 
 
 /* */
-
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
+/*Home*/
+#services {
+  padding-bottom: 3em;
 }
+.service-home a {
+  text-decoration: none;
+}
+.liste-demande-home {
+  color: #FFFFFF;
+  background-color: #233140;
+}
+
+.liste-offre-home {
+  color: #FFFFFF;
+  background-color: #18bc9c;
+}
+
+.liste-offre-home a{
+  color: #233140;
+}
+/*Mon-Espace*/
 .title-service-block {
   color:#FFFFFF;
   background-color: #233140;
@@ -90,15 +149,25 @@ footer .footer-below {
 }
 .serviceContainer{
   margin-bottom: 10px;
-  padding:10px;
-  border-left: 5px solid #233140;
+  padding: 5px 0;
   box-shadow: 1px 1px 5px #CCCCCC;
+}
+.service-title {
+  padding-left: 10px
 }
 .service-title a{
   font-size: 1.5em;
+  cursor: pointer;
 }
 
 .service-title a:hover{
   color: #233140;
   text-decoration: none;
+}
+/*Admin*/
+.item-box {
+  margin-bottom: 5px
+}
+.title-box {
+
 }

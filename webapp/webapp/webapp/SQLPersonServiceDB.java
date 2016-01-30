@@ -22,10 +22,10 @@ public class SQLPersonServiceDB {
 	/** A prepared statement for creations. */
 	private PreparedStatement createPersonServiceStatement;
 	
-	/** A prepared statement for retrieval of one product. */
+	/** A prepared statement for retrieval of one PersonService association. */
 	private PreparedStatement retrievePersonServiceStatement;
 	
-	/** A prepared statement for retrieval of one product. */
+	/** A prepared statement for retrieval of one PersonService association with the id person. */
 	private PreparedStatement retrieveServiceByPersonStatement;
 	
 	/** A link to the database. */
@@ -34,7 +34,7 @@ public class SQLPersonServiceDB {
 	/**
 	 * Builds a new instance.
 	 * @param link An active connection to an SQL database
-	 * @param table The name of the table where to store services
+	 * @param table The name of the table where to store PersonServices associations
 	 * @throws SQLException if a database access error occurs
 	 */
 	public SQLPersonServiceDB(Connection link, String table) throws SQLException {
@@ -80,7 +80,7 @@ public class SQLPersonServiceDB {
     }
     
 	/**
-     * Stores a new service in the database.
+     * Stores a new PersonService association in the database.
      * @param service The service to store
      * @throws SQLException if a database access error occurs
      */
@@ -103,7 +103,7 @@ public class SQLPersonServiceDB {
 
     /**
      * Retrieves all the associations in the database.
-     * @return A list of all Associations in the database
+     * @return A list of all associations in the database
      * @throws SQLException if a database access error occurs
      */
     public List<PersonServiceAssociation> retrieveAll () throws SQLException {
@@ -120,9 +120,10 @@ public class SQLPersonServiceDB {
     }
 
     /**
-     * Retrieves a service in the database.
-     * @param id The id of the service
-     * @return A service, or null if none with the given id exists in the database
+     * Retrieves a PersonService association in the database.
+     * @param idPerson The person's id
+     * @param idService The service's id
+     * @return A PersonService association, or null if none with the given id exists in the database
      * @throws SQLException if a database access error occurs
      */
     public PersonServiceAssociation retrieve (int idPerson, int idService) throws SQLException {
@@ -134,7 +135,12 @@ public class SQLPersonServiceDB {
         }
         return new PersonServiceAssociation(rs.getInt("idPerson"), rs.getInt("idService"), rs.getString("description"), rs.getDate("creationDate"), rs.getDate("limitDate"), rs.getInt("status"));
     }
-    
+    /**
+     * Retrieves a PersonService association in the database.
+     * @param person a Person object
+     * @return A PersonService association, or null if none with the given id exists in the database
+     * @throws SQLException if a database access error occurs
+     */
     public List<PersonServiceAssociation> retrieveAllByPerson (Person person) throws SQLException {
         this.retrieveServiceByPersonStatement.setInt(1, person.getId());
         ResultSet rs=this.retrieveServiceByPersonStatement.executeQuery();
@@ -173,7 +179,6 @@ public class SQLPersonServiceDB {
      * @param int id of the Person that has added the the service.
      * @throws SQLException if a database access error occurs
      */
-    
     public void deletePersonService (int idPerson) throws SQLException {  
         String query="DELETE FROM `"+this.table+"` WHERE idPerson="+idPerson+"";
         Statement statement=this.link.createStatement();

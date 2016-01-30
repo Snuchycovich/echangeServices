@@ -7,8 +7,9 @@ import java.util.List;
 
 /**
  * 
- * @author Emiliano Castillo
- * @since Novembre 2015
+ * @author Julien Foucault- Universit&eacute; de Caen Basse-Normandie, France
+ * @author Emiliano Castillo - Universit&eacute; de Caen Basse-Normandie, France
+ * @since November 2016
  */
 public class ServiceDBStub implements IServiceDB{
 	

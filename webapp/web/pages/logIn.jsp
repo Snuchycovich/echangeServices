@@ -16,9 +16,6 @@
                     <label for="">Mot de Passe:</label>
                     <input type="password" name="password" class="form-control">
                 </div>
-                <div class="checkbox vcenter">
-                  <label><input type="checkbox" id="memoire" name="memoire"> Se souvenir de moi</label>
-                </div>
               </div>
             </div>
             <div class="form-group">

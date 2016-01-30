@@ -56,7 +56,7 @@
         			</c:forEach>
         	</div>
 
-          <!--Liste demande de services-->
+          <!--Liste offre de services-->
           <div class="col-lg-6" id="offres">
             <h2 class="text-center title-service-block">Offres</h2>
               <c:forEach var="service" items="${listeServicesOffres}">

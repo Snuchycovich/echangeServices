@@ -7,22 +7,24 @@
   <div class="container">
     <div class="section">
       <h1>Admin</h1>
-      <p>Bonjour ${person.firstName}</p>
+      <p>Bonjour <strong>${person.firstName}</strong></p>
+
       <div class="row">
-        <div class="col-lg-4">
-          <h2>Utilisateurs</h2>
+        <!-- Utilisateurs -->
+        <div class="col-md-4">
+          <h2 class="title-service-block text-center">Utilisateurs</h2>
           <c:forEach var="person" items="${persons}">
-            <div class="row">
+              <div class="item-box serviceContainer">
                 <form method="post">
-                  <div class="col-md-8">
+                  <div class="col-md-9 title-box">
                     <a data-toggle="modal" data-target="#${person.id}">${person.firstName} ${person.name}</a>
                     <c:if test="${person.role == 0}">
-                         <strong>Admin</strong>
+                         <strong> (Admin)</strong>
                     </c:if>
                     <input type="hidden" name="idPerson" value="${person.id}">
                   </div>
-                  <div class="col-md-4">
-                    <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                  <div class="col-md-3">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                   </div>
                 </form>
                 <div id="${person.id}" class="modal fade" role="dialog">
@@ -44,30 +46,36 @@
                     </div>
                   </div>
                 </div>
-            </div>
+                <div class="row"></div>
+              </div>
           </c:forEach>
         </div>
-        <div class="col-lg-4">
-          <h2>Services</h2>
+        <!-- Services -->
+        <div class="col-md-4">
+          <h2 class="title-service-block text-center">Services</h2>
           <c:forEach var="service" items="${services}">
-            <div class="row">
-              <form method="post">
-                <div class="col-md-8">
-                  <a>${service.title}</a>
-                  <input type="hidden" name="idService" value="${service.id}">
-                </div>
-                <div class="col-md-4">
-                  <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                </div>
-              </form>
-            </div>
+              <div class="item-box serviceContainer">
+                <form method="post">
+                  <div class="col-md-9">
+                    <p class="title-box">${service.title}</>
+                    <input type="hidden" name="idService" value="${service.id}">
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                  </div>
+                </form>
+                <div class="row"></div>
+              </div>
           </c:forEach>
         </div>
-        <div class="col-lg-4">
-          <h2>Services - Utilisateurs</h2>
+
+        <!-- Services - Utilisateurs -->
+        <div class="col-md-4">
+          <h2 class="title-service-block text-center">Services - Utilisateurs</h2>
           <c:forEach var="ps" items="${psa}">
-            <div class="row">
-              <div class="col-md-8">
+            <div class="item-box serviceContainer">
+              <form method="post">
+              <div class="col-md-9">
                 <a data-toggle="modal" data-target="#ps-${ps.idService}">${ps.firstName} ${ps.name} - ${ps.title}</a>
                 <div id="ps-${ps.idService}" class="modal fade" role="dialog">
                   <div class="modal-dialog">
@@ -100,9 +108,14 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
-                <button type="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+
+              <div class="col-md-3">
+                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
               </div>
+              <input type="hidden" name="idP" value="${ps.idPerson}">
+              <input type="hidden" name="idS" value="${ps.idService}">
+              </form>
+              <div class="row"></div>
             </div>
           </c:forEach>
         </div>

@@ -33,13 +33,6 @@
               <input type="password" name="password" class="form-control">
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-              <label for="">Vérification Mot de passe:</label>
-              <input type="password" name="verifMDP" class="form-control">
-          </div>
-        </div>
-
       </div>
       <button type="submit" class="btn btn-default">S'inscrire</button>
     </form>

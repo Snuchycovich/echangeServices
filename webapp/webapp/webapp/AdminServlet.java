@@ -89,6 +89,23 @@ public class AdminServlet extends HttpServlet{
 			}
 		}
 		
+		String idP = req.getParameter("idP");
+		
+		String idS = req.getParameter("idS");
+		if (idS != null || idP != null) {
+			int personID = Integer.parseInt(idP);
+			int serviceID = Integer.parseInt(idS);
+			
+			try {
+				new DBHandler().SQLPersonServiceDB.deletePersonService(personID, serviceID);
+			} catch (SQLException | NamingException e) {
+			
+			}
+		}
+		
+		
+		
+		
 		res.sendRedirect(res.encodeRedirectURL(req.getContextPath()+"/admin"));
 	}
 

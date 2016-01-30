@@ -1,4 +1,4 @@
-package test;
+package tests;
 
 import java.util.List;
 import java.sql.Connection;
@@ -69,7 +69,7 @@ public class TestSQLServiceDB {
                 break;
             }
         }
-        /*assert id;
+        assert id;
         assert "Dépannage informatique".equals(title);
 
         Service s = db.retrieve(1);
@@ -83,10 +83,11 @@ public class TestSQLServiceDB {
 			e.printStackTrace();
 		}
         s = db.retrieve(1);
+        int idService = s.getId();
         assert "Depannage electrique".equals(s.getTitle());
-        db.delete(s);
+        db.delete(idService);
         assert db.retrieveAll().size()== 1;
-        assert db.retrieve(1) == null;*/
+        assert db.retrieve(1) == null;
     }
 	
 }

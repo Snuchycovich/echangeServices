@@ -8,13 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SQLPSCompleteInfoDB {
-	
+	/** A link to the database. */
 	protected Connection link;
 	
+	/**
+	 * Connection to the database.
+	 * @param link An active connection to an SQL database
+	 * @throws SQLException if a database access error occurs
+	 */
 	public SQLPSCompleteInfoDB(Connection link) throws SQLException {
 		this.link = link;
 	}
-	
+	 /**
+     * Retrieves all PersonService associations in the database.
+     * @return A PersonService association, or null if none with the given id exists in the database
+     * @throws SQLException if a database access error occurs
+     */
 	public List<PSCompleteInfo> retrieveAll() throws SQLException {
 		String query ="SELECT ps.idPerson, ps.idService, ps.description, ps.creationDate, ps.limitDate, ps.status, s.id, s.title, p.name, p.firstName, p.email, p.inscriptionDate "
 				+ "FROM personService ps INNER JOIN services s ON ps.idService = s.id INNER JOIN persons p ON ps.idPerson = p.id";
@@ -28,7 +37,12 @@ public class SQLPSCompleteInfoDB {
         }
         return res;
 	}
-	
+	 /**
+     * Retrieves a list of PersonService association by Person in the database.
+     * @param idPerson The person's id
+     * @return A PersonService association, or null if none with the given id exists in the database
+     * @throws SQLException if a database access error occurs
+     */
 	public List<PSCompleteInfo> retrieveByPerson(int idPerson) throws SQLException {
 		String query ="SELECT ps.description, ps.creationDate, ps.limitDate, ps.status, s.id, s.title, p.name, p.firstName, p.email, p.inscriptionDate "
 				+ "FROM personService ps INNER JOIN services s ON ps.idService = s.id INNER JOIN persons p ON ps.idPerson = p.id WHERE  ps.idPerson ="+idPerson+"";

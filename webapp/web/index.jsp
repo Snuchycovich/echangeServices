@@ -12,7 +12,7 @@
               <img class="img-responsive" src="img/profile.png" alt="Image perfil">
             </div>
             <div class="col-lg-4">
-              <img class="img-responsive" src="img/profile2.png" alt="Image perfil 2">
+              <img class="img-responsive" src="img/profile.png" alt="Image perfil 2">
             </div>
 
           </div>
@@ -36,13 +36,13 @@
             </div>
             <div class="row">
               <c:forEach var="service" items="${listeServicesDemandes}">
-                <div class="col-sm-4 serviceContainer">
+                <div class="col-md-4 service-home liste-demande-home">
                     <h3><a href="service/add">${service.title}</a></h3>
                     <p>${service.description}</p>
                     <p>
-						Date limite pour rendre ce service : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
+						        Date limite pour rendre ce service : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
                     </p>
-                    <p>Demandé par ${service.firstName}</p>
+                    <p>Demandé par <strong>${service.firstName}</strong></p>
                 </div>
               </c:forEach>
             </div>
@@ -56,13 +56,13 @@
             </div>
             <div class="row">
               <c:forEach var="service" items="${listeServicesOffres}">
-                <div class="col-sm-4 serviceContainer">
+                <div class="col-sm-4 service-home liste-offre-home">
                   <h3><a href="service/add">${service.title}</a></h3>
                   <p>${service.description}</p>
                   <p>
 					Date limite pour profiter de ce service : <fmt:formatDate value="${service.limitDate}" pattern="dd/MM/yyyy" />
                   </p>
-                  <p>Offert par ${service.firstName}</p>
+                  <p>Offert par <strong>${service.firstName}</strong></p>
                 </div>
               </c:forEach>
             </div>

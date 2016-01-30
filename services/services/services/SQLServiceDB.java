@@ -93,8 +93,8 @@ public class SQLServiceDB implements IServiceDB{
     }
 
     /**
-     * Retrieves all the products in the database.
-     * @return A list of all products in the database
+     * Retrieves all the services in the database.
+     * @return A list of all services in the database
      * @throws SQLException if a database access error occurs
      */
     @Override
@@ -113,7 +113,7 @@ public class SQLServiceDB implements IServiceDB{
 
     /**
      * Retrieves a service in the database.
-     * @param id The id of the service
+     * @param id The service's id.
      * @return A service, or null if none with the given id exists in the database
      * @throws SQLException if a database access error occurs
      */
