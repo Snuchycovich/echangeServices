@@ -71,7 +71,7 @@ header .intro-text .name {
 }
 
 header .intro-text .skills {
-    font-size: 1.25em;
+    font-size: 1.75em;
     font-weight: 300;
 }
 .navbar {
@@ -122,6 +122,23 @@ footer .footer-below {
 
 /* */
 /*Home*/
+#about {
+  color: #ffffff;
+  background-color: #233140;
+}
+#about .row{
+  margin-bottom: 1em;
+}
+#about p.skills {
+  font-size: 1.5em;
+}
+#about .square {
+  height: 100px;
+  width: 100px;
+  background-color: #18bc9c;
+}
+
+
 #services {
   padding-bottom: 3em;
 }
