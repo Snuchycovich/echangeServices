@@ -38,15 +38,13 @@
           <div class="square"></div>
         </div>
         <div class="col-sm-10">
-          <p class="skills">Le principe est simple, vous vous inscrivez « Inscription », vous rajoutez deux services
-            (un offre et une demande). Nous vous proposent une liste de services, mais si vous ne trouvez
-            pas votre bonheur vous pouvez en rajouter.</p>
+          <p class="skills">Le principe est simple : après inscription, vous pouvez proposer ou demander des services aux utilisateurs du site. 
+          </p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-10">
-          <p class="skills">Il faut savoir qu'il sera plus facile de trouver une réponse a votre besoin si vous
-            choisissez parmi la liste car le service est déjà présente dans le site.</p>
+          <p class="skills">Ajoutez votre propre service ou choisissez parmi la liste de ceux déjà presents sur le site.</p>
         </div>
         <div class="col-sm-2">
           <div class="square"></div>
@@ -57,28 +55,19 @@
           <div class="square"></div>
         </div>
         <div class="col-sm-10">
-          <p class="skills">Vous accédez a votre espace personnel pour gérer vos services. Vous lancez un cycle
-            pour trouver quelqu'un qui puisse vous rendre  le service demandé.</p>
+          <p class="skills">Une fois inscrit, vous disposez d'un accés à votre espace personnel pour gérer vos services.<br />
+          Vous pouvez lancer un cycle pour trouver une personne qui puisse vous rendre le service demandé.</p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-10">
-          <p class="skills">Si vous ne trouvez pas un ne vous découragez pas il faut un petit peu de patience
-            que l'est autres utilisateurs connaissent le service que vous avez proposé. N’hésitez
-            à en parler dans votre entourage. Plus on est plus il y a des services.</p>
+          <p class="skills">Si aucun cycle n'est disponible, essayez de proposer un service à une personne qui puisse vous rendre la pareille.</p>
         </div>
         <div class="col-sm-2">
           <div class="square"></div>
         </div>
       </div>
-
-
-
-
-
-
   </div>
-
 </section>
 <section id="services">
         <div class="container">
