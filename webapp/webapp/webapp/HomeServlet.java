@@ -3,6 +3,7 @@ package webapp;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -19,6 +20,7 @@ public class HomeServlet extends HttpServlet{
 		List<PSCompleteInfo> psCompleteInfo = null;
 		try {
 			psCompleteInfo = new DBHandler().SQLPSCompleteInfoDB.retrieveAll();
+			Collections.reverse(psCompleteInfo);
 		} catch (SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
